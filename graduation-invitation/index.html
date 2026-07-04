@@ -16,7 +16,6 @@
 </head>
 <body class="font-sans antialiased grain auto-tour" x-data="app()" x-init="init()">
   <template x-for="p in petals"><span class="petal" :style="`left:${p.x}%;animation-duration:${p.d}s;animation-delay:${p.delay}s;font-size:${p.s}px`">✦</span></template>
-  <button @click="toggleMusic" class="fixed right-4 top-4 z-50 grid h-11 w-11 place-items-center rounded-full border border-white/60 bg-cream/80 shadow-lg backdrop-blur" :class="playing&&'animate-pulse'" aria-label="Bật tắt nhạc"><span class="text-xl" x-text="playing?'♥':'♡'"></span></button>
   <audio x-ref="audio" loop src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946bc3da32.mp3?filename=romantic-piano-126914.mp3"></audio>
 
   <header class="screen-panel relative h-[100svh] min-h-[680px] overflow-hidden bg-plum text-white">
@@ -60,7 +59,7 @@
       <div class="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-center px-6 pb-24 pt-36 text-center text-white md:pt-44">
         <p class="reveal text-xs uppercase tracking-[.45em] text-rose/90">With all my heart</p>
         <h2 class="reveal mt-6 font-script text-6xl text-cream md:text-8xl">Cảm ơn</h2>
-        <p class="reveal mt-6 max-w-none whitespace-nowrap text-sm font-light leading-8 text-white/80 md:text-base">Cảm ơn vì đã đồng hành, tô điểm và cùng KimTrinh lưu giữ những năm tháng của Thanh Xuân.</p>
+        <p class="reveal mt-6 max-w-sm text-sm font-light leading-7 text-white/80 md:max-w-none md:whitespace-nowrap md:text-base md:leading-8">Cảm ơn vì đã đồng hành, tô điểm và cùng KimTrinh lưu giữ những năm tháng của Thanh Xuân.</p>
         <div class="reveal mt-10 h-px w-24 bg-rose/80"></div>
         <p class="reveal mt-10 font-display text-3xl uppercase tracking-[.25em] md:text-5xl">Tạm biệt</p>
         <p class="reveal mt-5 text-[11px] uppercase tracking-[.38em] text-white/65">Until we meet again</p>
