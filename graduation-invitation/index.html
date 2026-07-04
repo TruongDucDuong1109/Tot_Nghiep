@@ -54,6 +54,18 @@
     <section id="rsvp" class="px-6 py-24 md:py-32"><div class="mx-auto grid max-w-5xl overflow-hidden bg-white soft-card md:grid-cols-2"><div class="min-h-[380px] bg-cover bg-center" style="background-image:url('assets/main.jpg')"></div><form @submit.prevent="rsvpDone=true" class="p-8 md:p-14"><p class="font-script text-4xl text-blush">Save your seat</p><h2 class="font-display text-4xl">Bạn sẽ đến chứ?</h2><div class="mt-9 space-y-5"><input required placeholder="Họ và tên" class="w-full border-b border-rose py-3 outline-none"><input type="tel" required placeholder="Số điện thoại" class="w-full border-b border-rose py-3 outline-none"><select class="w-full border-b border-rose bg-white py-3 outline-none"><option>Mình sẽ tham dự</option><option>Tiếc quá, mình không thể đến</option></select><select class="w-full border-b border-rose bg-white py-3 outline-none"><option>1 người tham dự</option><option>2 người tham dự</option></select></div><button class="mt-9 w-full bg-plum py-4 text-xs uppercase tracking-[.25em] text-white">Xác nhận tham dự</button><p x-show="rsvpDone" x-transition class="mt-4 text-center font-script text-3xl text-blush">Cảm ơn bạn, hẹn gặp nhé! ♥</p></form></div></section>
 
     <section class="grid bg-plum text-white md:grid-cols-2"><iframe class="h-[420px] w-full grayscale opacity-80" src="https://www.openstreetmap.org/export/embed.html?bbox=106.790%2C10.865%2C106.810%2C10.885&layer=mapnik" loading="lazy"></iframe><div class="flex items-center px-8 py-16 md:px-20"><div><p class="font-script text-5xl text-rose">See you there</p><h2 class="font-display text-4xl">Thông tin liên hệ</h2><div class="mt-9 space-y-6 text-sm font-light leading-7 text-white/65"><p><span class="block text-[10px] uppercase tracking-[.3em] text-rose">Địa điểm</span>Đại học Quốc gia TP.HCM<br>Thủ Đức, TP. Hồ Chí Minh</p><p><span class="block text-[10px] uppercase tracking-[.3em] text-rose">Liên hệ</span>Kim Trinh · 090 123 4567<br>kimtrinh.graduation@example.com</p></div><a href="https://maps.google.com" target="_blank" class="mt-8 inline-block border-b border-rose pb-2 text-xs uppercase tracking-widest">Mở Google Maps ↗</a></div></div></section>
+    <section class="goodbye-section relative overflow-hidden">
+      <img src="assets/goodbye.jpg" alt="Khoảnh khắc tạm biệt" class="absolute inset-0 h-full w-full object-cover">
+      <div class="absolute inset-0 goodbye-overlay"></div>
+      <div class="relative z-10 mx-auto flex min-h-[78svh] max-w-4xl flex-col items-center justify-center px-6 py-24 text-center text-white">
+        <p class="reveal text-xs uppercase tracking-[.45em] text-rose/90">With all my heart</p>
+        <h2 class="reveal mt-6 font-script text-6xl text-cream md:text-8xl">Cảm ơn</h2>
+        <p class="reveal mt-6 max-w-2xl text-sm font-light leading-8 text-white/80 md:text-base">Cảm ơn vì đã ghé qua, ở lại và cùng mình lưu giữ một ngày thật đẹp của tuổi trẻ.</p>
+        <div class="reveal mt-10 h-px w-24 bg-rose/80"></div>
+        <p class="reveal mt-10 font-display text-3xl uppercase tracking-[.25em] md:text-5xl">Tạm biệt</p>
+        <p class="reveal mt-5 text-[11px] uppercase tracking-[.38em] text-white/65">Until we meet again</p>
+      </div>
+    </section>
   </main>
   <footer class="bg-[#1d1220] px-6 py-12 text-center text-white"><p class="font-script text-4xl text-rose">Kim Trinh</p><p class="mt-2 text-[9px] uppercase tracking-[.35em] text-white/35">Made with love · Graduation 2026</p></footer>
 

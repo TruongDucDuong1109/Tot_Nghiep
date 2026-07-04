@@ -49,6 +49,21 @@ button, a { min-height: 44px; }
   background-clip: text;
 }
 .line { background: linear-gradient(var(--rose), var(--blush)); }
+.goodbye-section {
+  min-height: 78svh;
+  background: #1d1220;
+}
+
+.goodbye-overlay {
+  background:
+    linear-gradient(180deg, rgba(29, 18, 32, .18) 0%, rgba(29, 18, 32, .45) 38%, rgba(29, 18, 32, .78) 100%),
+    radial-gradient(circle at top, rgba(232, 180, 160, .28), transparent 42%);
+}
+
+.goodbye-section h2,
+.goodbye-section p {
+  text-shadow: 0 12px 36px rgba(0, 0, 0, .28);
+}
 
 /* Mobile-first refinements */
 @media (max-width: 767px) {
