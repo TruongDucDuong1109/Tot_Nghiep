@@ -7,7 +7,10 @@
 
 * { -webkit-tap-highlight-color: transparent; }
 [x-cloak] { display: none !important; }
-html { overflow-x: hidden; }
+html {
+  overflow-x: hidden;
+  scroll-snap-type: y proximity;
+}
 body {
   background: var(--cream);
   color: var(--plum);
@@ -49,8 +52,14 @@ button, a { min-height: 44px; }
   background-clip: text;
 }
 .line { background: linear-gradient(var(--rose), var(--blush)); }
+.screen-panel {
+  min-height: 100svh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 .goodbye-section {
-  min-height: 78svh;
+  min-height: 100svh;
   background: #1d1220;
 }
 

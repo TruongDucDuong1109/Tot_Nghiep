@@ -14,12 +14,12 @@
   <link rel="stylesheet" href="styles.css">
   <script>tailwind.config={theme:{extend:{colors:{rose:'#E8B4A0',blush:'#D4A5B5',cream:'#F8F1ED',plum:'#2A1A2E'},fontFamily:{display:['Playfair Display','serif'],script:['Great Vibes','cursive'],sans:['Inter','sans-serif']}}}}</script>
 </head>
-<body class="font-sans antialiased grain" x-data="app()" x-init="init()">
+<body class="font-sans antialiased grain auto-tour" x-data="app()" x-init="init()">
   <template x-for="p in petals"><span class="petal" :style="`left:${p.x}%;animation-duration:${p.d}s;animation-delay:${p.delay}s;font-size:${p.s}px`">✦</span></template>
   <button @click="toggleMusic" class="fixed right-4 top-4 z-50 grid h-11 w-11 place-items-center rounded-full border border-white/60 bg-cream/80 shadow-lg backdrop-blur" :class="playing&&'animate-pulse'" aria-label="Bật tắt nhạc"><span class="text-xl" x-text="playing?'♥':'♡'"></span></button>
   <audio x-ref="audio" loop src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946bc3da32.mp3?filename=romantic-piano-126914.mp3"></audio>
 
-  <header class="relative h-[100svh] min-h-[680px] overflow-hidden bg-plum text-white">
+  <header class="screen-panel relative h-[100svh] min-h-[680px] overflow-hidden bg-plum text-white">
     <template x-for="(img,i) in slides"><img :src="img" class="absolute inset-0 h-full w-full object-cover transition-opacity duration-[2200ms]" :class="slide===i?'opacity-65':'opacity-0'" alt="Ảnh kỷ niệm tốt nghiệp"></template>
     <div class="absolute inset-0 bg-gradient-to-t from-plum via-plum/20 to-plum/30"></div>
     <nav class="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-6 py-6 md:px-12"><span class="font-script text-3xl">Kim Trinh</span><a href="#invite" class="text-[10px] uppercase tracking-[.3em]">The Graduation · 2026</a></nav>
@@ -33,34 +33,34 @@
   </header>
 
   <main>
-    <section id="about" class="px-6 py-24 md:py-36"><div class="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
+    <section id="about" class="screen-panel px-6 py-24 md:py-36"><div class="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-2">
       <div class="reveal relative mx-auto max-w-md"><div class="absolute -inset-3 translate-x-5 translate-y-5 border border-rose"></div><img src="assets/main.jpg" class="relative aspect-[4/5] w-full object-cover" alt="Trần Thị Kim Trinh tốt nghiệp"><span class="absolute -bottom-8 -left-4 font-script text-6xl text-blush">She did it!</span></div>
       <div class="reveal md:pl-12"><p class="text-xs uppercase tracking-[.4em] text-blush">Chapter twenty-two</p><h2 class="mt-5 font-display text-4xl md:text-6xl">Xin chào, mình là<br><em class="shine">Trần Thị Kim Trinh</em></h2><p class="mt-8 max-w-lg font-light leading-8 text-plum/65">Bốn năm đại học là những ngày chạy deadline, những ly cà phê vội và cả vô vàn lần trưởng thành. Tấm bằng này không chỉ là một cột mốc — đó là món quà dành cho gia đình, thầy cô và những người bạn đã luôn ở bên mình.</p><div class="mt-10 flex gap-10 border-t border-rose/40 pt-7"><div><b class="font-display text-3xl">2026</b><p class="text-[10px] uppercase tracking-widest text-plum/45">Class of</p></div><div><b class="font-display text-3xl">22</b><p class="text-[10px] uppercase tracking-widest text-plum/45">Sweet years</p></div></div></div>
     </div></section>
 
-    <section id="invite" class="bg-[#ead5cd]/35 px-5 py-24 md:py-32"><div class="reveal soft-card relative mx-auto max-w-4xl overflow-hidden bg-cream px-6 py-16 text-center md:px-24 md:py-24"><div class="absolute inset-3 border border-rose/60"></div><div class="absolute inset-6 border border-rose/25"></div>
+    <section id="invite" class="screen-panel bg-[#ead5cd]/35 px-5 py-24 md:py-32"><div class="reveal soft-card relative mx-auto max-w-4xl overflow-hidden bg-cream px-6 py-16 text-center md:px-24 md:py-24"><div class="absolute inset-3 border border-rose/60"></div><div class="absolute inset-6 border border-rose/25"></div>
       <p class="font-script text-4xl text-blush">Together with my family</p><h2 class="mt-4 font-display text-4xl uppercase tracking-[.12em] md:text-6xl">Graduation<br>Soirée</h2><div class="mx-auto my-8 h-px w-24 bg-rose"></div><p class="text-xs uppercase leading-7 tracking-[.25em]">Trân trọng kính mời bạn đến chung vui<br>tại lễ tốt nghiệp của</p><p class="my-7 font-script text-6xl text-blush md:text-7xl">Kim Trinh</p><div class="grid grid-cols-3 divide-x divide-rose/50"><div><p class="text-xs uppercase tracking-widest">Thứ bảy</p><b class="font-display text-4xl">18</b></div><div><p class="text-xs uppercase tracking-widest">Tháng 07</p><b class="font-display text-4xl">2026</b></div><div><p class="text-xs uppercase tracking-widest">Vào lúc</p><b class="font-display text-4xl">16:00</b></div></div><p class="mt-8 text-sm leading-7 text-plum/60">Đại học Quốc gia TP.HCM<br>Quảng trường trung tâm, Thủ Đức</p>
       <button @click="openInvite" class="relative mt-9 rounded-full bg-plum px-8 py-4 text-xs uppercase tracking-[.25em] text-white transition hover:bg-blush">Mở lời mời ✦</button>
     </div></section>
 
-    <section class="px-6 py-20 text-center md:py-28"><p class="font-script text-4xl text-blush">Counting every heartbeat</p><h2 class="mt-2 font-display text-3xl">Hẹn nhau vào ngày rực rỡ</h2><div class="mx-auto mt-10 grid max-w-xl grid-cols-4 gap-3"><template x-for="unit in countdown"><div class="rounded-t-full border border-rose/50 bg-white/50 px-2 py-6"><b class="font-display text-3xl" x-text="unit.v"></b><p class="mt-2 text-[9px] uppercase tracking-widest text-plum/45" x-text="unit.l"></p></div></template></div></section>
+    <section class="screen-panel px-6 py-20 text-center md:py-28"><p class="font-script text-4xl text-blush">Counting every heartbeat</p><h2 class="mt-2 font-display text-3xl">Hẹn nhau vào ngày rực rỡ</h2><div class="mx-auto mt-10 grid max-w-xl grid-cols-4 gap-3"><template x-for="unit in countdown"><div class="rounded-t-full border border-rose/50 bg-white/50 px-2 py-6"><b class="font-display text-3xl" x-text="unit.v"></b><p class="mt-2 text-[9px] uppercase tracking-widest text-plum/45" x-text="unit.l"></p></div></template></div></section>
 
-    <section id="gallery" class="bg-plum px-3 py-24 text-white md:px-8 md:py-32"><div class="mx-auto max-w-7xl"><div class="mb-14 text-center"><p class="font-script text-5xl text-rose">Beautiful memories</p><h2 class="font-display text-4xl md:text-5xl">Hành trình của mình</h2></div><div class="masonry"><template x-for="(img,i) in gallery"><figure class="group reveal overflow-hidden"><img :src="img" class="w-full object-cover transition duration-700 group-hover:scale-105" :class="i%3===0?'aspect-[3/4]':i%3===1?'aspect-square':'aspect-[4/5]'" loading="lazy" alt="Kỷ niệm thanh xuân"><figcaption class="mt-2 text-[9px] uppercase tracking-[.2em] text-white/45" x-text="`Memory · ${String(i+1).padStart(2,'0')}`"></figcaption></figure></template></div></div></section>
+    <section id="gallery" class="screen-panel bg-plum px-3 py-24 text-white md:px-8 md:py-32"><div class="mx-auto max-w-7xl"><div class="mb-14 text-center"><p class="font-script text-5xl text-rose">Beautiful memories</p><h2 class="font-display text-4xl md:text-5xl">Hành trình của mình</h2></div><div class="masonry"><template x-for="(img,i) in gallery"><figure class="group reveal overflow-hidden"><img :src="img" class="w-full object-cover transition duration-700 group-hover:scale-105" :class="i%3===0?'aspect-[3/4]':i%3===1?'aspect-square':'aspect-[4/5]'" loading="lazy" alt="Kỷ niệm thanh xuân"><figcaption class="mt-2 text-[9px] uppercase tracking-[.2em] text-white/45" x-text="`Memory · ${String(i+1).padStart(2,'0')}`"></figcaption></figure></template></div></div></section>
 
-    <section class="px-6 py-24 md:py-32"><div class="mx-auto max-w-3xl"><div class="text-center"><p class="font-script text-5xl text-blush">The celebration</p><h2 class="font-display text-4xl">Chương trình</h2></div><div class="relative mt-16"><div class="line absolute bottom-0 left-[62px] top-0 w-px md:left-1/2"></div><template x-for="(e,i) in events"><div class="reveal relative mb-12 grid grid-cols-[45px_1fr] gap-8 md:grid-cols-2"><div class="text-right font-display text-lg md:pr-10" :class="i%2&&'md:col-start-2 md:text-left md:pl-10'" x-text="e.time"></div><div class="absolute left-[56px] top-1.5 h-3 w-3 rounded-full border-2 border-cream bg-blush ring-1 ring-rose md:left-1/2 md:-translate-x-1/2"></div><div class="col-start-2 md:px-10" :class="i%2?'md:col-start-1 md:row-start-1 md:text-right':'md:col-start-2'"><h3 class="font-display text-2xl" x-text="e.title"></h3><p class="mt-2 text-sm font-light leading-6 text-plum/55" x-text="e.desc"></p></div></div></template></div></div></section>
+    <section class="screen-panel px-6 py-24 md:py-32"><div class="mx-auto max-w-3xl"><div class="text-center"><p class="font-script text-5xl text-blush">The celebration</p><h2 class="font-display text-4xl">Chương trình</h2></div><div class="relative mt-16"><div class="line absolute bottom-0 left-[62px] top-0 w-px md:left-1/2"></div><template x-for="(e,i) in events"><div class="reveal relative mb-12 grid grid-cols-[45px_1fr] gap-8 md:grid-cols-2"><div class="text-right font-display text-lg md:pr-10" :class="i%2&&'md:col-start-2 md:text-left md:pl-10'" x-text="e.time"></div><div class="absolute left-[56px] top-1.5 h-3 w-3 rounded-full border-2 border-cream bg-blush ring-1 ring-rose md:left-1/2 md:-translate-x-1/2"></div><div class="col-start-2 md:px-10" :class="i%2?'md:col-start-1 md:row-start-1 md:text-right':'md:col-start-2'"><h3 class="font-display text-2xl" x-text="e.title"></h3><p class="mt-2 text-sm font-light leading-6 text-plum/55" x-text="e.desc"></p></div></div></template></div></div></section>
 
-    <section class="bg-[#ead5cd]/35 px-6 py-24 md:py-32"><div class="mx-auto max-w-4xl text-center"><p class="font-script text-5xl text-blush">Words of love</p><h2 class="font-display text-4xl">Lời chúc gửi Kim Trinh</h2><div class="soft-card mt-12 bg-white/70 p-8 md:p-14"><p class="font-display text-2xl italic leading-relaxed" x-text="wishes[wish].text"></p><p class="mt-6 text-xs uppercase tracking-[.3em] text-blush" x-text="wishes[wish].name"></p><div class="mt-8 flex justify-center gap-4"><button @click="wish=(wish-1+wishes.length)%wishes.length">←</button><button @click="wish=(wish+1)%wishes.length">→</button></div></div><form @submit.prevent="addWish" class="mx-auto mt-12 grid max-w-xl gap-4"><input x-model="wishName" required placeholder="Tên của bạn" class="border-b border-rose bg-transparent px-3 py-3 outline-none"><textarea x-model="wishText" required placeholder="Viết vài lời yêu thương..." class="border-b border-rose bg-transparent px-3 py-3 outline-none"></textarea><button class="mx-auto mt-3 rounded-full bg-plum px-8 py-3 text-xs uppercase tracking-widest text-white">Gửi lời chúc</button></form></div></section>
+    <section class="screen-panel bg-[#ead5cd]/35 px-6 py-24 md:py-32"><div class="mx-auto max-w-4xl text-center"><p class="font-script text-5xl text-blush">Words of love</p><h2 class="font-display text-4xl">Lời chúc gửi Kim Trinh</h2><div class="soft-card mt-12 bg-white/70 p-8 md:p-14"><p class="font-display text-2xl italic leading-relaxed" x-text="wishes[wish].text"></p><p class="mt-6 text-xs uppercase tracking-[.3em] text-blush" x-text="wishes[wish].name"></p><div class="mt-8 flex justify-center gap-4"><button @click="wish=(wish-1+wishes.length)%wishes.length">←</button><button @click="wish=(wish+1)%wishes.length">→</button></div></div><form @submit.prevent="addWish" class="mx-auto mt-12 grid max-w-xl gap-4"><input x-model="wishName" required placeholder="Tên của bạn" class="border-b border-rose bg-transparent px-3 py-3 outline-none"><textarea x-model="wishText" required placeholder="Viết vài lời yêu thương..." class="border-b border-rose bg-transparent px-3 py-3 outline-none"></textarea><button class="mx-auto mt-3 rounded-full bg-plum px-8 py-3 text-xs uppercase tracking-widest text-white">Gửi lời chúc</button></form></div></section>
 
-    <section id="rsvp" class="px-6 py-24 md:py-32"><div class="mx-auto grid max-w-5xl overflow-hidden bg-white soft-card md:grid-cols-2"><div class="min-h-[380px] bg-cover bg-center" style="background-image:url('assets/main.jpg')"></div><form @submit.prevent="rsvpDone=true" class="p-8 md:p-14"><p class="font-script text-4xl text-blush">Save your seat</p><h2 class="font-display text-4xl">Bạn sẽ đến chứ?</h2><div class="mt-9 space-y-5"><input required placeholder="Họ và tên" class="w-full border-b border-rose py-3 outline-none"><input type="tel" required placeholder="Số điện thoại" class="w-full border-b border-rose py-3 outline-none"><select class="w-full border-b border-rose bg-white py-3 outline-none"><option>Mình sẽ tham dự</option><option>Tiếc quá, mình không thể đến</option></select><select class="w-full border-b border-rose bg-white py-3 outline-none"><option>1 người tham dự</option><option>2 người tham dự</option></select></div><button class="mt-9 w-full bg-plum py-4 text-xs uppercase tracking-[.25em] text-white">Xác nhận tham dự</button><p x-show="rsvpDone" x-transition class="mt-4 text-center font-script text-3xl text-blush">Cảm ơn bạn, hẹn gặp nhé! ♥</p></form></div></section>
+    <section id="rsvp" class="screen-panel px-6 py-24 md:py-32"><div class="mx-auto grid max-w-5xl overflow-hidden bg-white soft-card md:grid-cols-2"><div class="min-h-[380px] bg-cover bg-center" style="background-image:url('assets/main.jpg')"></div><form @submit.prevent="rsvpDone=true" class="p-8 md:p-14"><p class="font-script text-4xl text-blush">Save your seat</p><h2 class="font-display text-4xl">Bạn sẽ đến chứ?</h2><div class="mt-9 space-y-5"><input required placeholder="Họ và tên" class="w-full border-b border-rose py-3 outline-none"><input type="tel" required placeholder="Số điện thoại" class="w-full border-b border-rose py-3 outline-none"><select class="w-full border-b border-rose bg-white py-3 outline-none"><option>Mình sẽ tham dự</option><option>Tiếc quá, mình không thể đến</option></select><select class="w-full border-b border-rose bg-white py-3 outline-none"><option>1 người tham dự</option><option>2 người tham dự</option></select></div><button class="mt-9 w-full bg-plum py-4 text-xs uppercase tracking-[.25em] text-white">Xác nhận tham dự</button><p x-show="rsvpDone" x-transition class="mt-4 text-center font-script text-3xl text-blush">Cảm ơn bạn, hẹn gặp nhé! ♥</p></form></div></section>
 
-    <section class="grid bg-plum text-white md:grid-cols-2"><iframe class="h-[420px] w-full grayscale opacity-80" src="https://www.openstreetmap.org/export/embed.html?bbox=106.790%2C10.865%2C106.810%2C10.885&layer=mapnik" loading="lazy"></iframe><div class="flex items-center px-8 py-16 md:px-20"><div><p class="font-script text-5xl text-rose">See you there</p><h2 class="font-display text-4xl">Thông tin liên hệ</h2><div class="mt-9 space-y-6 text-sm font-light leading-7 text-white/65"><p><span class="block text-[10px] uppercase tracking-[.3em] text-rose">Địa điểm</span>Đại học Quốc gia TP.HCM<br>Thủ Đức, TP. Hồ Chí Minh</p><p><span class="block text-[10px] uppercase tracking-[.3em] text-rose">Liên hệ</span>Kim Trinh · 090 123 4567<br>kimtrinh.graduation@example.com</p></div><a href="https://maps.google.com" target="_blank" class="mt-8 inline-block border-b border-rose pb-2 text-xs uppercase tracking-widest">Mở Google Maps ↗</a></div></div></section>
-    <section class="goodbye-section relative overflow-hidden">
-      <img src="assets/goodbye.jpg" alt="Khoảnh khắc tạm biệt" class="absolute inset-0 h-full w-full object-cover">
+    <section class="screen-panel grid bg-plum text-white md:grid-cols-2"><iframe class="h-[420px] w-full grayscale opacity-80" src="https://www.openstreetmap.org/export/embed.html?bbox=106.790%2C10.865%2C106.810%2C10.885&layer=mapnik" loading="lazy"></iframe><div class="flex items-center px-8 py-16 md:px-20"><div><p class="font-script text-5xl text-rose">See you there</p><h2 class="font-display text-4xl">Thông tin liên hệ</h2><div class="mt-9 space-y-6 text-sm font-light leading-7 text-white/65"><p><span class="block text-[10px] uppercase tracking-[.3em] text-rose">Địa điểm</span>Đại học Quốc gia TP.HCM<br>Thủ Đức, TP. Hồ Chí Minh</p><p><span class="block text-[10px] uppercase tracking-[.3em] text-rose">Liên hệ</span>Kim Trinh · 090 123 4567<br>kimtrinh.graduation@example.com</p></div><a href="https://maps.google.com" target="_blank" class="mt-8 inline-block border-b border-rose pb-2 text-xs uppercase tracking-widest">Mở Google Maps ↗</a></div></div></section>
+    <section class="screen-panel goodbye-section relative overflow-hidden">
+      <img src="assets/goodbye.jpg" alt="Khoảnh khắc tạm biệt" class="absolute inset-0 h-full w-full object-cover object-[center_28%] md:object-center">
       <div class="absolute inset-0 goodbye-overlay"></div>
-      <div class="relative z-10 mx-auto flex min-h-[78svh] max-w-4xl flex-col items-center justify-center px-6 py-24 text-center text-white">
+      <div class="relative z-10 mx-auto flex min-h-[100svh] max-w-4xl flex-col items-center justify-center px-6 pb-24 pt-36 text-center text-white md:pt-44">
         <p class="reveal text-xs uppercase tracking-[.45em] text-rose/90">With all my heart</p>
         <h2 class="reveal mt-6 font-script text-6xl text-cream md:text-8xl">Cảm ơn</h2>
-        <p class="reveal mt-6 max-w-2xl text-sm font-light leading-8 text-white/80 md:text-base">Cảm ơn vì đã ghé qua, ở lại và cùng mình lưu giữ một ngày thật đẹp của tuổi trẻ.</p>
+        <p class="reveal mt-6 max-w-none whitespace-nowrap text-sm font-light leading-8 text-white/80 md:text-base">Cảm ơn vì đã đồng hành, tô điểm và cùng KimTrinh lưu giữ những năm tháng của Thanh Xuân.</p>
         <div class="reveal mt-10 h-px w-24 bg-rose/80"></div>
         <p class="reveal mt-10 font-display text-3xl uppercase tracking-[.25em] md:text-5xl">Tạm biệt</p>
         <p class="reveal mt-5 text-[11px] uppercase tracking-[.38em] text-white/65">Until we meet again</p>
@@ -72,14 +72,15 @@
   <script>
   function app(){return{
     // Thay các đường dẫn dưới đây bằng ảnh của bạn trong assets/slides/.
-    slides:['assets/slides/2aoboqhqslxoinox7rues0td4verrcpvdngdnrl28.jpg','assets/slides/70a2671cc0f141af18e03.jpg','assets/slides/89c2e77e4093c1cd98824.jpg','assets/slides/9359d9e47e09ff57a6181.jpg','assets/slides/bf667dd8da355b6b02242.jpg','assets/slides/c3f1c8b6685be905b04a7.jpg','assets/slides/ef8d39ce9923187d41326.jpg'],slide:0,playing:false,petals:Array.from({length:13},()=>({x:Math.random()*100,d:9+Math.random()*12,delay:-Math.random()*16,s:8+Math.random()*10})),
+    slides:['assets/slides/2aoboqhqslxoinox7rues0td4verrcpvdngdnrl28.jpg','assets/slides/70a2671cc0f141af18e03.jpg','assets/slides/89c2e77e4093c1cd98824.jpg','assets/slides/9359d9e47e09ff57a6181.jpg','assets/slides/bf667dd8da355b6b02242.jpg','assets/slides/c3f1c8b6685be905b04a7.jpg','assets/slides/ef8d39ce9923187d41326.jpg'],slide:0,playing:false,petals:Array.from({length:13},()=>({x:Math.random()*100,d:9+Math.random()*12,delay:-Math.random()*16,s:8+Math.random()*10})),heroTimer:null,autoScrollTimer:null,autoScrollResumeTimer:null,panelUnlockTimer:null,activePanel:0,panels:[],panelLock:false,
     gallery:['assets/main.jpg','assets/slides/2aoboqhqslxoinox7rues0td4verrcpvdngdnrl28.jpg','assets/slides/70a2671cc0f141af18e03.jpg','assets/slides/89c2e77e4093c1cd98824.jpg','assets/slides/9359d9e47e09ff57a6181.jpg','assets/slides/bf667dd8da355b6b02242.jpg','assets/slides/c3f1c8b6685be905b04a7.jpg','assets/slides/ef8d39ce9923187d41326.jpg'],
     events:[{time:'15:30',title:'Đón khách',desc:'Gặp nhau, check-in và lưu lại những khoảnh khắc đầu tiên.'},{time:'16:00',title:'Lễ tốt nghiệp',desc:'Khoảnh khắc gọi tên, nhận bằng và cùng nhau tự hào.'},{time:'17:30',title:'Chụp ảnh kỷ niệm',desc:'Mời bạn ở lại để chúng mình có thật nhiều bức hình đẹp.'},{time:'18:30',title:'Tiệc thân mật',desc:'Một buổi tối ấm áp với đồ ăn ngon, âm nhạc và những câu chuyện.'}],
     wishes:[{text:'“Chúc cô gái nhỏ luôn rực rỡ, dũng cảm và dịu dàng trên mọi hành trình phía trước.”',name:'Gia đình'},{text:'“Không chỉ là tấm bằng, đây còn là minh chứng cho tất cả nỗ lực của cậu. Tự hào về cậu!”',name:'Hà Linh · Bestie'},{text:'“The world is waiting for you. Go make it beautiful.”',name:'Class of 2026'}],wish:0,wishName:'',wishText:'',rsvpDone:false,countdown:[],
     init(){
-      setInterval(()=>this.slide=(this.slide+1)%this.slides.length,5500);
+      this.heroTimer=setInterval(()=>this.slide=(this.slide+1)%this.slides.length,3200);
       this.tick();
       setInterval(()=>this.tick(),1000);
+      this.setupAutoScroll();
       this.$nextTick(()=>{
         // Nội dung vẫn hiển thị bình thường nếu GSAP/CDN không tải được.
         if(typeof gsap==='undefined') return;
@@ -104,6 +105,58 @@
         });
         ScrollTrigger.refresh();
       })
+    },
+    setupAutoScroll(){
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      this.panels=Array.from(document.querySelectorAll('.screen-panel'));
+      if(!this.panels.length) return;
+      this.updateActivePanel();
+      this.startAutoScroll();
+      const pauseThenResume=()=>this.pauseAutoScroll(12000);
+      ['wheel','touchstart','pointerdown','keydown'].forEach(event=>{
+        window.addEventListener(event,pauseThenResume,{passive:true});
+      });
+      window.addEventListener('scroll',()=>this.updateActivePanel(),{passive:true});
+      window.addEventListener('resize',()=>this.updateActivePanel(),{passive:true});
+      document.addEventListener('visibilitychange',()=>{
+        if(document.hidden){
+          this.pauseAutoScroll(0);
+          return;
+        }
+        this.startAutoScroll();
+      });
+    },
+    startAutoScroll(){
+      clearInterval(this.autoScrollTimer);
+      this.autoScrollTimer=setInterval(()=>this.goToNextPanel(),6500);
+    },
+    pauseAutoScroll(delay=12000){
+      clearInterval(this.autoScrollTimer);
+      clearTimeout(this.autoScrollResumeTimer);
+      if(delay<=0) return;
+      this.autoScrollResumeTimer=setTimeout(()=>this.startAutoScroll(),delay);
+    },
+    updateActivePanel(){
+      if(!this.panels.length) return;
+      const marker=window.scrollY+(window.innerHeight*.35);
+      let nextIndex=0;
+      this.panels.forEach((panel,index)=>{
+        if(panel.offsetTop<=marker) nextIndex=index;
+      });
+      this.activePanel=nextIndex;
+    },
+    goToNextPanel(){
+      if(!this.panels.length||this.panelLock) return;
+      this.scrollToPanel((this.activePanel+1)%this.panels.length);
+    },
+    scrollToPanel(index){
+      const panel=this.panels[index];
+      if(!panel) return;
+      this.panelLock=true;
+      this.activePanel=index;
+      panel.scrollIntoView({behavior:'smooth',block:'start'});
+      clearTimeout(this.panelUnlockTimer);
+      this.panelUnlockTimer=setTimeout(()=>{this.panelLock=false;},1200);
     },
     tick(){let d=Math.max(0,new Date('2026-07-18T16:00:00+07:00')-new Date()),v=[Math.floor(d/864e5),Math.floor(d/36e5)%24,Math.floor(d/6e4)%60,Math.floor(d/1000)%60];this.countdown=v.map((x,i)=>({v:String(x).padStart(2,'0'),l:['Ngày','Giờ','Phút','Giây'][i]}))},
     toggleMusic(){this.playing=!this.playing;this.playing?this.$refs.audio.play():this.$refs.audio.pause()},
