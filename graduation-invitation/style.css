@@ -1,0 +1,2137 @@
+:root {
+  --ink: #272022;
+  --muted: #6f6467;
+  --rose: #c9788e;
+  --rose-soft: #f4becb;
+  --rose-light: #fff4f7;
+  --gold: #c8a56b;
+  --gold-soft: #e9d5ad;
+  --panel: #fffafb;
+  --shadow: 0 34px 90px rgba(154, 81, 104, .18);
+  --sans: "Be Vietnam Pro", "Montserrat", Arial, sans-serif;
+  --serif: "Cormorant Garamond", "Times New Roman", serif;
+  --script: "Great Vibes", "Allura", cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #fff7f9;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 16% 16%, rgba(255, 221, 231, .85), transparent 28rem),
+    radial-gradient(circle at 88% 90%, rgba(232, 213, 173, .34), transparent 30rem),
+    linear-gradient(135deg, #fff 0%, #fff2f6 100%);
+  font-family: var(--sans);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(280px, 390px);
+  gap: clamp(18px, 3vw, 42px);
+  align-items: start;
+  width: min(1420px, 100%);
+  margin: 0 auto;
+  padding: clamp(18px, 3vw, 40px);
+}
+
+.workspace {
+  display: grid;
+  min-height: calc(100vh - clamp(36px, 6vw, 80px));
+  place-items: center;
+}
+
+.card-frame {
+  width: min(100%, 72vh, 720px);
+  aspect-ratio: 2 / 3;
+  filter: drop-shadow(0 30px 58px rgba(91, 42, 60, .16));
+}
+
+.invitation-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 66% 36%, rgba(255, 255, 255, .9) 0 9%, rgba(255, 255, 255, 0) 24%),
+    radial-gradient(circle at 86% 62%, rgba(255, 224, 233, .84), rgba(255, 224, 233, 0) 33%),
+    linear-gradient(145deg, #ffffff 0%, #fff7f9 54%, #fff0f5 100%);
+  border: 1px solid rgba(203, 154, 169, .35);
+  box-shadow: var(--shadow);
+}
+
+.invitation-card::before {
+  content: "";
+  position: absolute;
+  inset: 2.8%;
+  z-index: 4;
+  border: 1px solid rgba(200, 165, 107, .36);
+  pointer-events: none;
+}
+
+.invitation-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.9), rgba(255,255,255,0) 18%, rgba(255,255,255,0) 76%, rgba(255,255,255,.48)),
+    radial-gradient(circle at 22% 68%, rgba(255, 255, 255, .88), rgba(255, 255, 255, 0) 18%);
+}
+
+/* Background decorations */
+.soft-glow,
+.mist-layer,
+.flower-cluster,
+.petal {
+  position: absolute;
+  pointer-events: none;
+}
+
+.soft-glow {
+  z-index: 2;
+  border-radius: 999px;
+}
+
+.glow-one {
+  right: 6%;
+  bottom: 11%;
+  width: 42%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(255, 255, 255, .96), rgba(255, 225, 234, .5) 54%, rgba(255, 225, 234, 0) 72%);
+}
+
+.glow-two {
+  left: 7%;
+  top: 4%;
+  width: 38%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(255, 236, 242, .72), rgba(255, 236, 242, 0) 68%);
+}
+
+.mist-layer {
+  left: -6%;
+  right: -6%;
+  bottom: -2%;
+  z-index: 3;
+  height: 27%;
+  background:
+    radial-gradient(ellipse at 18% 72%, rgba(244, 190, 203, .32), rgba(244, 190, 203, 0) 46%),
+    radial-gradient(ellipse at 82% 68%, rgba(255, 218, 228, .42), rgba(255, 218, 228, 0) 46%),
+    linear-gradient(0deg, rgba(255, 237, 244, .82), rgba(255, 255, 255, 0));
+}
+
+.flower-cluster {
+  z-index: 3;
+  width: 45%;
+  opacity: .42;
+}
+
+.flower-left {
+  left: -9%;
+  bottom: -2%;
+}
+
+.flower-right {
+  right: -13%;
+  bottom: -1%;
+  transform: scaleX(-1);
+}
+
+.petal {
+  z-index: 6;
+  width: 4.2%;
+  aspect-ratio: 1.55;
+  background: center / contain no-repeat url("./images/petal-1.png");
+  opacity: .42;
+  animation: petalFloat 8s ease-in-out infinite;
+}
+
+.petal-two,
+.petal-four,
+.petal-six {
+  background-image: url("./images/petal-2.png");
+}
+
+.petal-one { left: 8%; top: 16%; transform: rotate(-18deg); animation-delay: -1s; }
+.petal-two { left: 47%; top: 14%; width: 3.2%; transform: rotate(22deg); animation-delay: -4s; }
+.petal-three { right: 9%; top: 28%; width: 3.8%; transform: rotate(60deg); animation-delay: -2s; }
+.petal-four { left: 12%; top: 56%; width: 3.4%; transform: rotate(8deg); animation-delay: -6s; }
+.petal-five { right: 38%; bottom: 25%; width: 3%; transform: rotate(-42deg); animation-delay: -3s; }
+.petal-six { right: 7%; bottom: 13%; width: 3.6%; transform: rotate(120deg); animation-delay: -5s; }
+
+body.no-animation .petal {
+  animation: none;
+}
+
+@keyframes petalFloat {
+  0%, 100% { translate: 0 0; }
+  45% { translate: 12px 20px; }
+  75% { translate: -9px 34px; }
+}
+
+/* Top ribbon */
+.vertical-ribbon {
+  position: absolute;
+  top: 0;
+  right: 4.8%;
+  z-index: 11;
+  width: 8.8%;
+  height: 19.2%;
+  background: linear-gradient(180deg, #f3a9bc 0%, #d9879d 100%);
+  border-inline: 1px solid rgba(200, 165, 107, .78);
+  box-shadow: 0 16px 28px rgba(171, 95, 116, .18);
+  clip-path: polygon(0 0, 100% 0, 100% 84%, 50% 100%, 0 84%);
+}
+
+.ribbon-emblem {
+  display: grid;
+  width: 72%;
+  aspect-ratio: 1;
+  margin: 30% auto 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .55);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .12);
+}
+
+.ribbon-emblem svg {
+  width: 78%;
+}
+
+.school-logo {
+  display: none;
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+}
+
+.ribbon-emblem.has-logo .school-logo {
+  display: block;
+}
+
+.ribbon-emblem.has-logo .default-emblem {
+  display: none;
+}
+
+.laurel,
+.tassel {
+  stroke: #f7e8bd;
+}
+
+.cap {
+  fill: #f7e8bd;
+}
+
+/* Header */
+.card-header {
+  position: absolute;
+  inset: 5.8% 14% auto 8.6%;
+  z-index: 10;
+  text-align: center;
+}
+
+.invite-label {
+  margin: 0;
+  color: #2f292b;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(8px, 1.65vw, 17px);
+  font-weight: 400;
+  letter-spacing: .36em;
+  line-height: 1.25;
+}
+
+.guest-name {
+  margin: 1.3% 0 0;
+  color: var(--rose);
+  font-family: var(--serif);
+  font-size: clamp(13px, 2.3vw, 24px);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: .08em;
+  line-height: 1.1;
+}
+
+.graduate-title {
+  margin: 7.5% 0 0;
+  color: var(--rose);
+  font-family: var(--script);
+  font-size: clamp(54px, 11.6vw, 116px);
+  font-weight: 400;
+  line-height: .82;
+  text-shadow: 0 7px 18px rgba(197, 112, 138, .16);
+}
+
+.title-swash {
+  display: block;
+  width: 56%;
+  height: .8%;
+  min-height: 2px;
+  margin: 2.7% auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(200, 165, 107, 0), var(--gold), var(--rose), rgba(201, 120, 142, 0));
+}
+
+/* Date and time */
+.event-row {
+  position: absolute;
+  top: 30.2%;
+  left: 8.5%;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 29% 33%;
+  gap: 4.6%;
+  width: 69%;
+  min-height: 19%;
+}
+
+.date-block {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 7% 13% 7% 2%;
+  border-block: 1px solid rgba(200, 165, 107, .72);
+  text-align: center;
+}
+
+.date-block::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  right: 0;
+  width: 1px;
+  height: 76%;
+  background: linear-gradient(180deg, rgba(200, 165, 107, 0), rgba(200, 165, 107, .88), rgba(200, 165, 107, 0));
+}
+
+.date-block p,
+.date-block strong,
+.date-block em {
+  margin: 0;
+}
+
+.date-block p {
+  color: #333;
+  font-size: clamp(7px, 1.35vw, 13px);
+  font-weight: 500;
+  letter-spacing: .29em;
+}
+
+.date-block strong {
+  margin-top: 4%;
+  color: var(--rose);
+  font-size: clamp(12px, 2.2vw, 23px);
+  font-weight: 500;
+  letter-spacing: .12em;
+}
+
+.date-block span {
+  color: #211d1e;
+  font-family: var(--serif);
+  font-size: clamp(58px, 11.6vw, 116px);
+  font-weight: 700;
+  line-height: .82;
+}
+
+.date-block em {
+  color: #373033;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(8px, 1.5vw, 15px);
+  font-style: normal;
+  letter-spacing: .36em;
+}
+
+.time-block {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  padding-top: 5%;
+}
+
+.time-block p {
+  margin: 0;
+  color: var(--rose);
+  font-size: clamp(9px, 1.65vw, 17px);
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+.time-block strong {
+  display: block;
+  margin-top: 5%;
+  color: #292426;
+  font-family: var(--serif);
+  font-size: clamp(19px, 3.8vw, 39px);
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 82%;
+  margin-top: 8%;
+  color: var(--gold);
+}
+
+.ornament span,
+.heart-ornament span {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(200, 165, 107, 0), currentColor, rgba(200, 165, 107, 0));
+}
+
+.ornament i {
+  width: 15%;
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, currentColor 0 12%, rgba(200, 165, 107, 0) 13%),
+    rgba(200, 165, 107, 0);
+}
+
+/* Location */
+.location-block {
+  position: absolute;
+  top: 52.8%;
+  left: 8.6%;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 7.5% 1fr;
+  gap: 3.2%;
+  width: 46%;
+}
+
+.pin-icon {
+  width: 100%;
+  margin-top: 5%;
+  fill: var(--rose);
+}
+
+.pin-icon circle {
+  fill: #fff8fa;
+}
+
+.location-block h2,
+.location-block p {
+  margin: 0;
+}
+
+.location-block h2 {
+  color: #2c2729;
+  font-size: clamp(10px, 1.86vw, 19px);
+  font-weight: 700;
+  letter-spacing: .08em;
+  line-height: 1.36;
+}
+
+.location-block p {
+  margin-top: 2.2%;
+  color: var(--muted);
+  font-size: clamp(8px, 1.46vw, 15px);
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+/* Congratulation artwork */
+.congrats-area {
+  position: absolute;
+  left: 8.2%;
+  bottom: 7.3%;
+  z-index: 10;
+  width: 48%;
+}
+
+.congrats-ribbon {
+  position: relative;
+  width: 73%;
+  margin-left: 2%;
+  padding: 3.1% 7%;
+  color: #fff;
+  background: linear-gradient(90deg, #d47792, #efa5b8 54%, #c56d86);
+  box-shadow: 0 10px 18px rgba(198, 105, 132, .2);
+  clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 8% 50%);
+  transform: rotate(-2deg);
+}
+
+.congrats-ribbon::before {
+  content: "";
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  bottom: -20%;
+  height: 45%;
+  background: rgba(159, 80, 104, .3);
+  opacity: .22;
+}
+
+.congrats-ribbon span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: clamp(7px, 1.27vw, 13px);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-align: center;
+}
+
+.graduate-mark {
+  position: relative;
+  margin-top: 3%;
+  padding-left: 2%;
+}
+
+.graduate-mark p {
+  margin: 0;
+  color: var(--rose);
+  font-family: var(--script);
+  font-size: clamp(55px, 10.2vw, 104px);
+  line-height: .78;
+}
+
+.graduate-mark strong {
+  display: inline-block;
+  margin-top: -2%;
+  color: #b78355;
+  font-family: var(--serif);
+  font-size: clamp(50px, 9.7vw, 98px);
+  font-weight: 700;
+  letter-spacing: .03em;
+  line-height: .78;
+}
+
+.graduate-mark i {
+  position: absolute;
+  right: 9%;
+  top: 32%;
+  color: #d47d94;
+  font-size: clamp(11px, 2.1vw, 22px);
+  font-style: normal;
+}
+
+.heart-ornament {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  gap: 8px;
+  margin: 4% 0 0 8%;
+  color: var(--gold);
+}
+
+.heart-ornament b {
+  color: var(--rose);
+  font-size: clamp(9px, 1.6vw, 17px);
+  font-weight: 400;
+}
+
+/* Graduate image */
+.graduate-figure {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+  width: 45%;
+  height: 70%;
+}
+
+.figure-light {
+  position: absolute;
+  right: -7%;
+  bottom: 8%;
+  width: 108%;
+  height: 83%;
+  border-radius: 52% 48% 0 0;
+  background:
+    radial-gradient(ellipse at 48% 40%, rgba(255,255,255,.95), rgba(255, 230, 237, .6) 55%, rgba(255, 230, 237, 0) 74%);
+}
+
+.graduate-figure img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+/* Invitation templates */
+.template-ivory {
+  --rose: #a87465;
+  --muted: #756b61;
+  --gold: #b99554;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(236, 211, 167, .28), rgba(236, 211, 167, 0) 30%),
+    linear-gradient(160deg, #fffdf7 0%, #fff8eb 58%, #f7e5ca 100%);
+  border-color: rgba(185, 149, 84, .38);
+}
+
+.template-ivory::before {
+  inset: 3.4%;
+  border-color: rgba(185, 149, 84, .55);
+}
+
+.template-ivory::after {
+  background:
+    linear-gradient(90deg, rgba(255, 253, 247, .84), rgba(255, 253, 247, 0) 24%, rgba(255, 253, 247, 0) 72%, rgba(255, 253, 247, .52)),
+    radial-gradient(circle at 80% 25%, rgba(247, 229, 202, .45), rgba(247, 229, 202, 0) 22%);
+}
+
+.template-ivory .vertical-ribbon {
+  background: linear-gradient(180deg, #d2b06d 0%, #b88c4a 100%);
+  border-inline-color: rgba(255, 255, 255, .56);
+}
+
+.template-ivory .graduate-title,
+.template-ivory .graduate-mark p,
+.template-ivory .guest-name {
+  color: #a87465;
+}
+
+.template-ivory .congrats-ribbon {
+  background: linear-gradient(90deg, #b98f55, #dfc58d 54%, #a87465);
+}
+
+.template-ivory .graduate-mark strong {
+  color: #9b6f3d;
+}
+
+.template-ivory .flower-cluster,
+.template-ivory .mist-layer {
+  opacity: .28;
+}
+
+.template-ivory .graduate-figure {
+  width: 43%;
+  height: 68%;
+  right: 2%;
+}
+
+.template-modern {
+  --rose: #d76c93;
+  --muted: #6d6670;
+  --gold: #c7a660;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, .98) 0 55%, rgba(255, 229, 238, .92) 55% 100%),
+    #fff;
+  border-color: rgba(215, 108, 147, .24);
+}
+
+.template-modern::before {
+  inset: 0;
+  border: 0;
+  border-left: 18px solid rgba(215, 108, 147, .22);
+}
+
+.template-modern::after {
+  background:
+    linear-gradient(135deg, rgba(215, 108, 147, .08) 0 18%, rgba(215, 108, 147, 0) 18% 100%),
+    radial-gradient(circle at 20% 84%, rgba(255, 223, 233, .62), rgba(255, 223, 233, 0) 20%);
+}
+
+.template-modern .card-header {
+  inset: 7% 18% auto 10%;
+  text-align: left;
+}
+
+.template-modern .invite-label,
+.template-modern .guest-name {
+  text-align: left;
+}
+
+.template-modern .graduate-title {
+  font-size: clamp(50px, 10.8vw, 108px);
+}
+
+.template-modern .title-swash {
+  width: 45%;
+  margin-left: 0;
+}
+
+.template-modern .event-row {
+  top: 33%;
+  left: 10%;
+  grid-template-columns: 30% 34%;
+}
+
+.template-modern .location-block {
+  left: 10%;
+  top: 55%;
+}
+
+.template-modern .congrats-area {
+  left: 10%;
+  bottom: 8%;
+}
+
+.template-modern .vertical-ribbon {
+  right: 5%;
+  width: 9.2%;
+  height: 17.8%;
+  background: linear-gradient(180deg, #31343d, #d76c93);
+}
+
+.template-modern .congrats-ribbon {
+  background: linear-gradient(90deg, #31343d, #d76c93);
+}
+
+.template-modern .flower-cluster {
+  opacity: .18;
+}
+
+.template-modern .petal {
+  opacity: .28;
+}
+
+.template-modern .graduate-figure {
+  width: 46%;
+  height: 72%;
+}
+
+.template-pearl {
+  --rose: #bd7892;
+  --muted: #756870;
+  --gold: #d1ac75;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 231, 239, .9), rgba(255, 231, 239, 0) 28%),
+    radial-gradient(circle at 18% 78%, rgba(255, 245, 249, .92), rgba(255, 245, 249, 0) 25%),
+    linear-gradient(180deg, #ffffff 0%, #fff7fb 48%, #f6dce7 100%);
+}
+
+.template-pearl::before {
+  inset: 4%;
+  border-radius: 48% 48% 0 0;
+  border-color: rgba(209, 172, 117, .42);
+}
+
+.template-pearl::after {
+  background:
+    radial-gradient(circle at 78% 20%, rgba(255, 255, 255, .78), rgba(255, 255, 255, 0) 18%),
+    linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0) 58%);
+}
+
+.template-pearl .card-header {
+  inset: 6.5% 16% auto 8.6%;
+}
+
+.template-pearl .graduate-title {
+  color: #bd7892;
+  font-size: clamp(56px, 11.9vw, 120px);
+}
+
+.template-pearl .vertical-ribbon {
+  background: linear-gradient(180deg, #f2b7ca 0%, #bd7892 100%);
+}
+
+.template-pearl .event-row {
+  top: 31.5%;
+}
+
+.template-pearl .date-block {
+  background: rgba(255, 255, 255, .42);
+}
+
+.template-pearl .time-block {
+  background: rgba(255, 255, 255, .34);
+  padding-left: 5%;
+}
+
+.template-pearl .congrats-ribbon {
+  background: linear-gradient(90deg, #bd7892, #ebb0c3 54%, #bd7892);
+}
+
+.template-pearl .graduate-mark strong {
+  color: #c69d68;
+}
+
+.template-pearl .flower-cluster {
+  opacity: .52;
+}
+
+.template-pearl .graduate-figure {
+  right: 1.5%;
+  width: 44%;
+  height: 70%;
+}
+
+.template-editorial {
+  --rose: #1f1d1e;
+  --muted: #6d6769;
+  --gold: #c59c55;
+  background:
+    linear-gradient(90deg, #ffffff 0 11%, #f6f1ed 11% 12.2%, #ffffff 12.2% 100%),
+    #ffffff;
+  border-color: rgba(31, 29, 30, .16);
+}
+
+.template-editorial::before {
+  inset: 3%;
+  border-color: rgba(31, 29, 30, .2);
+}
+
+.template-editorial::after {
+  background:
+    linear-gradient(180deg, rgba(31, 29, 30, .045), rgba(31, 29, 30, 0) 34%),
+    linear-gradient(90deg, rgba(197, 156, 85, .12) 0 36%, rgba(197, 156, 85, 0) 36% 100%);
+}
+
+.template-editorial .card-header {
+  inset: 7% 15% auto 10.5%;
+  text-align: left;
+}
+
+.template-editorial .invite-label,
+.template-editorial .guest-name {
+  text-align: left;
+}
+
+.template-editorial .graduate-title {
+  color: #1f1d1e;
+  font-size: clamp(48px, 10.3vw, 104px);
+}
+
+.template-editorial .title-swash {
+  width: 34%;
+  margin-left: 0;
+  background: linear-gradient(90deg, #1f1d1e, rgba(31, 29, 30, 0));
+}
+
+.template-editorial .event-row {
+  top: 34%;
+  left: 10.5%;
+}
+
+.template-editorial .location-block {
+  left: 10.5%;
+  top: 55%;
+}
+
+.template-editorial .congrats-area {
+  left: 10.5%;
+  bottom: 8%;
+}
+
+.template-editorial .vertical-ribbon {
+  background: linear-gradient(180deg, #1f1d1e 0%, #5d5355 100%);
+  border-inline-color: rgba(197, 156, 85, .72);
+}
+
+.template-editorial .congrats-ribbon {
+  background: linear-gradient(90deg, #1f1d1e, #5d5355);
+}
+
+.template-editorial .graduate-mark p {
+  color: #1f1d1e;
+}
+
+.template-editorial .graduate-mark strong {
+  color: #c59c55;
+}
+
+.template-editorial .flower-cluster,
+.template-editorial .mist-layer {
+  opacity: .14;
+}
+
+.template-editorial .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-sage {
+  --rose: #7f8f76;
+  --muted: #606a5c;
+  --gold: #c4a66b;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(214, 228, 205, .82), rgba(214, 228, 205, 0) 30%),
+    linear-gradient(150deg, #fffffb 0%, #f4f8ee 56%, #e5edda 100%);
+  border-color: rgba(127, 143, 118, .28);
+}
+
+.template-sage::before {
+  border-color: rgba(127, 143, 118, .36);
+}
+
+.template-sage::after {
+  background:
+    linear-gradient(135deg, rgba(127, 143, 118, .08) 0 26%, rgba(127, 143, 118, 0) 26% 100%),
+    radial-gradient(circle at 76% 72%, rgba(255, 255, 255, .76), rgba(255, 255, 255, 0) 25%);
+}
+
+.template-sage .vertical-ribbon {
+  background: linear-gradient(180deg, #a9b99d 0%, #788a6e 100%);
+}
+
+.template-sage .graduate-title,
+.template-sage .guest-name,
+.template-sage .graduate-mark p {
+  color: #7f8f76;
+}
+
+.template-sage .event-row {
+  top: 31.8%;
+  grid-template-columns: 28% 36%;
+}
+
+.template-sage .date-block {
+  background: rgba(255, 255, 255, .5);
+}
+
+.template-sage .time-block {
+  padding-left: 4%;
+}
+
+.template-sage .congrats-ribbon {
+  background: linear-gradient(90deg, #7f8f76, #b7c6a9 54%, #788a6e);
+}
+
+.template-sage .pin-icon {
+  fill: #7f8f76;
+}
+
+.template-sage .graduate-mark strong {
+  color: #a98246;
+}
+
+.template-sage .petal {
+  opacity: .23;
+}
+
+.template-sage .flower-cluster {
+  opacity: .34;
+}
+
+.template-sage .graduate-figure {
+  right: 1%;
+  bottom: 0;
+  width: 44%;
+  height: 70%;
+}
+
+.template-lavender {
+  --rose: #9a80b8;
+  --muted: #6d6675;
+  --gold: #c9a96f;
+  background:
+    radial-gradient(circle at 50% 9%, rgba(229, 217, 248, .95), rgba(229, 217, 248, 0) 30%),
+    linear-gradient(180deg, #ffffff 0%, #faf7ff 52%, #eee3fb 100%);
+  border-color: rgba(154, 128, 184, .26);
+}
+
+.template-lavender::before {
+  inset: 3.2%;
+  border-color: rgba(154, 128, 184, .26);
+}
+
+.template-lavender::after {
+  background:
+    radial-gradient(circle at 18% 74%, rgba(238, 227, 251, .7), rgba(238, 227, 251, 0) 22%),
+    linear-gradient(90deg, rgba(154, 128, 184, .06), rgba(154, 128, 184, 0) 42%);
+}
+
+.template-lavender .vertical-ribbon {
+  background: linear-gradient(180deg, #bea8d8 0%, #8e73aa 100%);
+}
+
+.template-lavender .graduate-title,
+.template-lavender .guest-name,
+.template-lavender .graduate-mark p {
+  color: #9a80b8;
+}
+
+.template-lavender .card-header {
+  inset: 6.5% 15% auto 8.6%;
+}
+
+.template-lavender .event-row {
+  top: 32.5%;
+}
+
+.template-lavender .location-block {
+  top: 54%;
+}
+
+.template-lavender .congrats-area {
+  bottom: 6.8%;
+}
+
+.template-lavender .congrats-ribbon {
+  background: linear-gradient(90deg, #8e73aa, #c5acd9 54%, #9a80b8);
+}
+
+.template-lavender .graduate-mark strong {
+  color: #b38a55;
+}
+
+.template-lavender .petal {
+  opacity: .35;
+}
+
+.template-lavender .flower-cluster {
+  opacity: .3;
+}
+
+.template-lavender .graduate-figure {
+  right: 1%;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-burgundy {
+  --rose: #9a4d64;
+  --muted: #675b5f;
+  --gold: #d2ad70;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.98) 0 62%, rgba(154, 77, 100, .12) 62% 100%),
+    radial-gradient(circle at 14% 20%, rgba(154, 77, 100, .14), rgba(154, 77, 100, 0) 24%),
+    #fffaf9;
+  border-color: rgba(154, 77, 100, .28);
+}
+
+.template-burgundy::before {
+  inset: 2.6%;
+  border-color: rgba(210, 173, 112, .45);
+}
+
+.template-burgundy::after {
+  background:
+    linear-gradient(180deg, rgba(154, 77, 100, .06), rgba(154, 77, 100, 0) 38%),
+    radial-gradient(circle at 78% 76%, rgba(255, 255, 255, .78), rgba(255, 255, 255, 0) 26%);
+}
+
+.template-burgundy .vertical-ribbon {
+  right: 5.4%;
+  background: linear-gradient(180deg, #ad5f76 0%, #7e354b 100%);
+}
+
+.template-burgundy .card-header {
+  inset: 6.2% 16% auto 8.6%;
+}
+
+.template-burgundy .graduate-title,
+.template-burgundy .guest-name,
+.template-burgundy .graduate-mark p {
+  color: #9a4d64;
+}
+
+.template-burgundy .event-row {
+  top: 31.4%;
+}
+
+.template-burgundy .date-block {
+  border-block-color: rgba(154, 77, 100, .38);
+}
+
+.template-burgundy .congrats-ribbon {
+  background: linear-gradient(90deg, #7e354b, #c9788e 54%, #9a4d64);
+}
+
+.template-burgundy .graduate-mark strong {
+  color: #b6874d;
+}
+
+.template-burgundy .pin-icon {
+  fill: #9a4d64;
+}
+
+.template-burgundy .flower-cluster {
+  opacity: .36;
+}
+
+.template-burgundy .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-sky {
+  --rose: #4b91c9;
+  --muted: #5d6f7d;
+  --gold: #b99d63;
+  background:
+    radial-gradient(circle at 20% 14%, rgba(208, 235, 255, .96), rgba(208, 235, 255, 0) 30%),
+    linear-gradient(180deg, #ffffff 0%, #f3fbff 48%, #dff2ff 100%);
+  border-color: rgba(75, 145, 201, .28);
+}
+
+.template-sky::before {
+  inset: 3.4%;
+  border-color: rgba(75, 145, 201, .34);
+}
+
+.template-sky::after {
+  background:
+    linear-gradient(120deg, rgba(75, 145, 201, .07) 0 24%, rgba(75, 145, 201, 0) 24% 100%),
+    radial-gradient(circle at 78% 72%, rgba(255, 255, 255, .82), rgba(255, 255, 255, 0) 24%);
+}
+
+.template-sky .vertical-ribbon {
+  background: linear-gradient(180deg, #8dc7ee 0%, #4b91c9 100%);
+}
+
+.template-sky .graduate-title,
+.template-sky .guest-name,
+.template-sky .graduate-mark p {
+  color: #4b91c9;
+}
+
+.template-sky .graduate-title {
+  font-family: "Allura", var(--script);
+  font-size: clamp(62px, 12.4vw, 126px);
+}
+
+.template-sky .event-row {
+  top: 32%;
+}
+
+.template-sky .date-block {
+  border-block-color: rgba(75, 145, 201, .42);
+}
+
+.template-sky .congrats-ribbon {
+  background: linear-gradient(90deg, #3f83b9, #8dc7ee 54%, #4b91c9);
+}
+
+.template-sky .pin-icon {
+  fill: #4b91c9;
+}
+
+.template-sky .graduate-mark strong {
+  color: #927345;
+}
+
+.template-sky .flower-cluster {
+  opacity: .24;
+}
+
+.template-sky .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-ocean {
+  --rose: #1688a0;
+  --muted: #526d73;
+  --gold: #c6a361;
+  background:
+    linear-gradient(90deg, #ffffff 0 58%, rgba(22, 136, 160, .12) 58% 100%),
+    radial-gradient(circle at 20% 86%, rgba(182, 233, 238, .86), rgba(182, 233, 238, 0) 26%),
+    #f8ffff;
+  border-color: rgba(22, 136, 160, .26);
+}
+
+.template-ocean::before {
+  inset: 3%;
+  border-color: rgba(22, 136, 160, .35);
+}
+
+.template-ocean::after {
+  background:
+    linear-gradient(180deg, rgba(22, 136, 160, .06), rgba(22, 136, 160, 0) 38%),
+    radial-gradient(circle at 76% 24%, rgba(255, 255, 255, .72), rgba(255, 255, 255, 0) 20%);
+}
+
+.template-ocean .card-header {
+  inset: 7% 18% auto 9.5%;
+  text-align: left;
+}
+
+.template-ocean .invite-label,
+.template-ocean .guest-name {
+  text-align: left;
+}
+
+.template-ocean .graduate-title {
+  color: #1688a0;
+  font-family: var(--serif);
+  font-size: clamp(42px, 8.5vw, 88px);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.template-ocean .title-swash {
+  width: 42%;
+  margin-left: 0;
+}
+
+.template-ocean .vertical-ribbon {
+  background: linear-gradient(180deg, #62c4cf 0%, #1688a0 100%);
+}
+
+.template-ocean .event-row {
+  left: 9.5%;
+  top: 34%;
+  grid-template-columns: 27% 36%;
+}
+
+.template-ocean .location-block {
+  left: 9.5%;
+  top: 55%;
+}
+
+.template-ocean .congrats-area {
+  left: 9.5%;
+  bottom: 8%;
+}
+
+.template-ocean .congrats-ribbon {
+  background: linear-gradient(90deg, #0f6779, #62c4cf 54%, #1688a0);
+}
+
+.template-ocean .graduate-mark p {
+  color: #1688a0;
+  font-family: "Allura", var(--script);
+}
+
+.template-ocean .graduate-mark strong {
+  color: #9c7a45;
+}
+
+.template-ocean .pin-icon {
+  fill: #1688a0;
+}
+
+.template-ocean .flower-cluster,
+.template-ocean .mist-layer {
+  opacity: .2;
+}
+
+.template-ocean .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  height: 71%;
+}
+
+.template-navy {
+  --rose: #12365f;
+  --muted: #52677d;
+  --gold: #c6a366;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(214, 231, 248, .72), rgba(214, 231, 248, 0) 27%),
+    linear-gradient(90deg, #ffffff 0 58%, rgba(18, 54, 95, .1) 58% 100%),
+    #f8fbff;
+  border-color: rgba(18, 54, 95, .34);
+}
+
+.template-navy::before {
+  inset: 2.8%;
+  border-color: rgba(18, 54, 95, .34);
+}
+
+.template-navy::after {
+  background:
+    linear-gradient(180deg, rgba(18, 54, 95, .065), rgba(18, 54, 95, 0) 42%),
+    linear-gradient(90deg, rgba(198, 163, 102, .12) 0 34%, rgba(198, 163, 102, 0) 34% 100%);
+}
+
+.template-navy .glow-one {
+  background: radial-gradient(circle, rgba(255, 255, 255, .95), rgba(214, 231, 248, .58) 54%, rgba(214, 231, 248, 0) 72%);
+}
+
+.template-navy .glow-two {
+  background: radial-gradient(circle, rgba(228, 241, 252, .76), rgba(228, 241, 252, 0) 68%);
+}
+
+.template-navy .mist-layer {
+  background:
+    radial-gradient(ellipse at 18% 72%, rgba(180, 207, 232, .28), rgba(180, 207, 232, 0) 46%),
+    radial-gradient(ellipse at 82% 68%, rgba(210, 229, 247, .38), rgba(210, 229, 247, 0) 46%),
+    linear-gradient(0deg, rgba(231, 241, 250, .7), rgba(255, 255, 255, 0));
+}
+
+.template-navy .card-header {
+  inset: 7.2% 16% auto 8.8%;
+}
+
+.template-navy .invite-label {
+  color: #12365f;
+  font-family: "Be Vietnam Pro", var(--sans);
+  font-weight: 600;
+  letter-spacing: .44em;
+}
+
+.template-navy .guest-name {
+  color: #315f96;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(10px, 1.8vw, 18px);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.template-navy .graduate-title {
+  color: #12365f;
+  font-family: var(--serif);
+  font-size: clamp(48px, 9.3vw, 96px);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.template-navy .vertical-ribbon {
+  background: linear-gradient(180deg, #315f96 0%, #102b4d 100%);
+  border-inline-color: rgba(198, 163, 102, .72);
+}
+
+.template-navy .event-row {
+  top: 33%;
+  grid-template-columns: 30% 34%;
+}
+
+.template-navy .date-block span {
+  color: #102b4d;
+}
+
+.template-navy .date-block {
+  border-block-color: rgba(18, 54, 95, .34);
+}
+
+.template-navy .date-block strong,
+.template-navy .time-block p {
+  color: #315f96;
+}
+
+.template-navy .time-block strong {
+  color: #102b4d;
+}
+
+.template-navy .title-swash,
+.template-navy .ornament span,
+.template-navy .heart-ornament span {
+  color: #c6a366;
+}
+
+.template-navy .title-swash {
+  background: linear-gradient(90deg, rgba(198, 163, 102, 0), #c6a366, #315f96, rgba(49, 95, 150, 0));
+}
+
+.template-navy .congrats-ribbon {
+  background: linear-gradient(90deg, #102b4d, #315f96 54%, #12365f);
+}
+
+.template-navy .graduate-mark p {
+  color: #12365f;
+}
+
+.template-navy .graduate-mark strong {
+  color: #a87a3f;
+}
+
+.template-navy .pin-icon {
+  fill: #315f96;
+}
+
+.template-navy .heart-ornament b,
+.template-navy .graduate-mark i {
+  color: #315f96;
+}
+
+.template-navy .flower-cluster,
+.template-navy .petal {
+  opacity: 0;
+}
+
+.template-navy .figure-light {
+  background:
+    radial-gradient(ellipse at 48% 40%, rgba(255,255,255,.95), rgba(214, 231, 248, .58) 55%, rgba(214, 231, 248, 0) 74%);
+}
+
+.template-navy .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-royal {
+  --rose: #276bd8;
+  --muted: #59687e;
+  --gold: #d2ad66;
+  background:
+    linear-gradient(135deg, #ffffff 0 46%, #eff5ff 46% 100%),
+    #ffffff;
+  border-color: rgba(39, 107, 216, .24);
+}
+
+.template-royal::before {
+  inset: 3.1%;
+  border-color: rgba(39, 107, 216, .34);
+}
+
+.template-royal::after {
+  background:
+    linear-gradient(90deg, rgba(39, 107, 216, .08) 0 12%, rgba(39, 107, 216, 0) 12% 100%),
+    radial-gradient(circle at 77% 76%, rgba(255, 255, 255, .78), rgba(255, 255, 255, 0) 24%);
+}
+
+.template-royal .card-header {
+  inset: 6.6% 16% auto 8.6%;
+}
+
+.template-royal .graduate-title {
+  color: #276bd8;
+  font-family: "Great Vibes", var(--script);
+  font-size: clamp(56px, 11.2vw, 114px);
+}
+
+.template-royal .guest-name {
+  color: #276bd8;
+}
+
+.template-royal .vertical-ribbon {
+  background: linear-gradient(180deg, #6aa4ff 0%, #276bd8 100%);
+}
+
+.template-royal .event-row {
+  top: 31.8%;
+  left: 8.8%;
+}
+
+.template-royal .date-block {
+  background: rgba(255, 255, 255, .5);
+  border-block-color: rgba(39, 107, 216, .32);
+}
+
+.template-royal .location-block {
+  top: 53.8%;
+}
+
+.template-royal .congrats-ribbon {
+  background: linear-gradient(90deg, #194a9a, #6aa4ff 54%, #276bd8);
+}
+
+.template-royal .graduate-mark p {
+  color: #276bd8;
+}
+
+.template-royal .graduate-mark strong {
+  color: #b98443;
+}
+
+.template-royal .pin-icon {
+  fill: #276bd8;
+}
+
+.template-royal .flower-cluster {
+  opacity: .22;
+}
+
+.template-royal .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-blueprint {
+  --rose: #1c74a8;
+  --muted: #60717c;
+  --gold: #b99658;
+  background:
+    linear-gradient(rgba(28, 116, 168, .045) 1px, rgba(28, 116, 168, 0) 1px),
+    linear-gradient(90deg, rgba(28, 116, 168, .045) 1px, rgba(28, 116, 168, 0) 1px),
+    #ffffff;
+  background-size: 34px 34px;
+  border-color: rgba(28, 116, 168, .22);
+}
+
+.template-blueprint::before {
+  inset: 4%;
+  border-color: rgba(28, 116, 168, .3);
+}
+
+.template-blueprint::after {
+  background:
+    linear-gradient(90deg, rgba(28, 116, 168, .09) 0 8%, rgba(28, 116, 168, 0) 8% 100%),
+    radial-gradient(circle at 75% 78%, rgba(255, 255, 255, .82), rgba(255, 255, 255, 0) 24%);
+}
+
+.template-blueprint .card-header {
+  inset: 7.8% 17% auto 9.5%;
+  text-align: left;
+}
+
+.template-blueprint .invite-label,
+.template-blueprint .guest-name {
+  text-align: left;
+}
+
+.template-blueprint .invite-label {
+  color: #1c74a8;
+  font-family: "Be Vietnam Pro", var(--sans);
+  font-weight: 700;
+}
+
+.template-blueprint .guest-name {
+  color: #596f7c;
+  font-family: "Montserrat", var(--sans);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.template-blueprint .graduate-title {
+  color: #1c74a8;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(34px, 6.2vw, 66px);
+  font-weight: 700;
+  letter-spacing: .01em;
+  line-height: 1.04;
+  text-transform: uppercase;
+}
+
+.template-blueprint .title-swash {
+  width: 52%;
+  margin-left: 0;
+  background: linear-gradient(90deg, #1c74a8, rgba(28, 116, 168, 0));
+}
+
+.template-blueprint .vertical-ribbon {
+  background: linear-gradient(180deg, #1c74a8 0%, #125377 100%);
+}
+
+.template-blueprint .event-row {
+  top: 34.5%;
+  left: 9.5%;
+  grid-template-columns: 28% 36%;
+}
+
+.template-blueprint .date-block {
+  background: rgba(255, 255, 255, .7);
+}
+
+.template-blueprint .location-block {
+  left: 9.5%;
+  top: 56%;
+}
+
+.template-blueprint .congrats-area {
+  left: 9.5%;
+  bottom: 8%;
+}
+
+.template-blueprint .congrats-ribbon {
+  background: linear-gradient(90deg, #125377, #1c74a8);
+}
+
+.template-blueprint .graduate-mark p {
+  color: #1c74a8;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(34px, 6.2vw, 68px);
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.template-blueprint .graduate-mark strong {
+  color: #b99658;
+}
+
+.template-blueprint .pin-icon {
+  fill: #1c74a8;
+}
+
+.template-blueprint .flower-cluster,
+.template-blueprint .petal {
+  opacity: .14;
+}
+
+.template-blueprint .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-midnight-script {
+  --rose: #d8e8ff;
+  --muted: #a9bdd6;
+  --gold: #d3ad6d;
+  color: #eef6ff;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(49, 95, 150, .62), rgba(49, 95, 150, 0) 28%),
+    radial-gradient(circle at 86% 70%, rgba(9, 28, 54, .8), rgba(9, 28, 54, 0) 32%),
+    linear-gradient(145deg, #07172e 0%, #102b4d 52%, #07152a 100%);
+  border-color: rgba(211, 173, 109, .42);
+}
+
+.template-midnight-script::before {
+  inset: 3%;
+  border-color: rgba(211, 173, 109, .48);
+}
+
+.template-midnight-script::after {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,0) 28%, rgba(255,255,255,0) 78%, rgba(255,255,255,.05)),
+    radial-gradient(circle at 22% 70%, rgba(214, 231, 248, .12), rgba(214, 231, 248, 0) 20%);
+}
+
+.template-midnight-script .glow-one {
+  background: radial-gradient(circle, rgba(230, 243, 255, .22), rgba(49, 95, 150, .24) 54%, rgba(49, 95, 150, 0) 72%);
+}
+
+.template-midnight-script .glow-two {
+  background: radial-gradient(circle, rgba(119, 162, 210, .24), rgba(119, 162, 210, 0) 68%);
+}
+
+.template-midnight-script .mist-layer {
+  background:
+    radial-gradient(ellipse at 18% 72%, rgba(49, 95, 150, .25), rgba(49, 95, 150, 0) 46%),
+    radial-gradient(ellipse at 82% 68%, rgba(214, 231, 248, .14), rgba(214, 231, 248, 0) 46%),
+    linear-gradient(0deg, rgba(7, 18, 35, .7), rgba(7, 18, 35, 0));
+}
+
+.template-midnight-script .card-header {
+  inset: 6.2% 15% auto 8.8%;
+}
+
+.template-midnight-script .invite-label {
+  color: #e8f2ff;
+}
+
+.template-midnight-script .guest-name {
+  color: #d3ad6d;
+}
+
+.template-midnight-script .graduate-title {
+  color: #d8e8ff;
+  font-family: var(--script);
+  font-size: clamp(60px, 12.4vw, 126px);
+  text-shadow: 0 10px 28px rgba(0, 0, 0, .24);
+}
+
+.template-midnight-script .title-swash {
+  background: linear-gradient(90deg, rgba(211, 173, 109, 0), #d3ad6d, #d8e8ff, rgba(216, 232, 255, 0));
+}
+
+.template-midnight-script .vertical-ribbon {
+  background: linear-gradient(180deg, #315f96 0%, #07172e 100%);
+  border-inline-color: rgba(211, 173, 109, .7);
+}
+
+.template-midnight-script .ribbon-emblem {
+  background: rgba(255, 255, 255, .9);
+}
+
+.template-midnight-script .date-block {
+  border-block-color: rgba(211, 173, 109, .48);
+}
+
+.template-midnight-script .date-block p,
+.template-midnight-script .date-block em,
+.template-midnight-script .time-block strong,
+.template-midnight-script .location-block h2 {
+  color: #eef6ff;
+}
+
+.template-midnight-script .date-block strong,
+.template-midnight-script .time-block p,
+.template-midnight-script .pin-icon {
+  color: #d3ad6d;
+  fill: #d3ad6d;
+}
+
+.template-midnight-script .date-block span {
+  color: #ffffff;
+}
+
+.template-midnight-script .location-block p {
+  color: #a9bdd6;
+}
+
+.template-midnight-script .congrats-ribbon {
+  background: linear-gradient(90deg, #07172e, #315f96 54%, #102b4d);
+  border: 1px solid rgba(211, 173, 109, .36);
+}
+
+.template-midnight-script .graduate-mark p {
+  color: #d8e8ff;
+}
+
+.template-midnight-script .graduate-mark strong {
+  color: #d3ad6d;
+}
+
+.template-midnight-script .heart-ornament,
+.template-midnight-script .ornament {
+  color: #d3ad6d;
+}
+
+.template-midnight-script .flower-cluster,
+.template-midnight-script .petal {
+  opacity: .08;
+}
+
+.template-midnight-script .figure-light {
+  background: radial-gradient(ellipse at 48% 40%, rgba(216,232,255,.28), rgba(49, 95, 150, .2) 55%, rgba(49, 95, 150, 0) 74%);
+}
+
+.template-midnight-script .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-navy-gold {
+  --rose: #f0f6ff;
+  --muted: #b9c6d7;
+  --gold: #d5b270;
+  color: #f0f6ff;
+  background:
+    linear-gradient(90deg, rgba(6, 20, 42, .98) 0 60%, rgba(12, 38, 70, .96) 60% 100%),
+    #06142a;
+  border-color: rgba(213, 178, 112, .45);
+}
+
+.template-navy-gold::before {
+  inset: 2.6%;
+  border-color: rgba(213, 178, 112, .56);
+}
+
+.template-navy-gold::after {
+  background:
+    linear-gradient(135deg, rgba(213, 178, 112, .11) 0 22%, rgba(213, 178, 112, 0) 22% 100%),
+    linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,0) 42%);
+}
+
+.template-navy-gold .card-header {
+  inset: 6.8% 16% auto 8.8%;
+  text-align: left;
+}
+
+.template-navy-gold .invite-label,
+.template-navy-gold .guest-name {
+  text-align: left;
+}
+
+.template-navy-gold .invite-label {
+  color: #f0f6ff;
+}
+
+.template-navy-gold .guest-name {
+  color: #d5b270;
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.1vw, 22px);
+}
+
+.template-navy-gold .graduate-title {
+  color: #f0f6ff;
+  font-family: var(--script);
+  font-size: clamp(58px, 11.5vw, 118px);
+}
+
+.template-navy-gold .title-swash {
+  width: 45%;
+  margin-left: 0;
+  background: linear-gradient(90deg, #d5b270, rgba(213, 178, 112, 0));
+}
+
+.template-navy-gold .vertical-ribbon {
+  background: linear-gradient(180deg, #d5b270 0%, #8b6a36 100%);
+  border-inline-color: rgba(255, 255, 255, .32);
+}
+
+.template-navy-gold .ribbon-emblem {
+  background: rgba(255, 255, 255, .94);
+}
+
+.template-navy-gold .event-row {
+  left: 9%;
+  top: 34%;
+  grid-template-columns: 30% 34%;
+}
+
+.template-navy-gold .date-block {
+  border-block-color: rgba(213, 178, 112, .55);
+}
+
+.template-navy-gold .date-block p,
+.template-navy-gold .date-block em,
+.template-navy-gold .time-block strong,
+.template-navy-gold .location-block h2 {
+  color: #f0f6ff;
+}
+
+.template-navy-gold .date-block strong,
+.template-navy-gold .time-block p,
+.template-navy-gold .graduate-mark strong {
+  color: #d5b270;
+}
+
+.template-navy-gold .date-block span {
+  color: #ffffff;
+}
+
+.template-navy-gold .location-block {
+  left: 9%;
+  top: 55%;
+}
+
+.template-navy-gold .location-block p {
+  color: #b9c6d7;
+}
+
+.template-navy-gold .pin-icon {
+  fill: #d5b270;
+}
+
+.template-navy-gold .congrats-area {
+  left: 9%;
+  bottom: 8%;
+}
+
+.template-navy-gold .congrats-ribbon {
+  background: linear-gradient(90deg, #d5b270, #9d7940);
+  color: #06142a;
+}
+
+.template-navy-gold .graduate-mark p {
+  color: #f0f6ff;
+}
+
+.template-navy-gold .flower-cluster,
+.template-navy-gold .petal {
+  opacity: .06;
+}
+
+.template-navy-gold .figure-light {
+  background: radial-gradient(ellipse at 48% 40%, rgba(240,246,255,.24), rgba(49, 95, 150, .2) 55%, rgba(49, 95, 150, 0) 74%);
+}
+
+.template-navy-gold .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+.template-satin-blue {
+  --rose: #cfe5ff;
+  --muted: #b6c7da;
+  --gold: #c6a366;
+  color: #eef6ff;
+  background:
+    radial-gradient(circle at 72% 38%, rgba(49, 95, 150, .36), rgba(49, 95, 150, 0) 24%),
+    linear-gradient(165deg, #07162c 0%, #142f55 45%, #091b33 100%);
+  border-color: rgba(144, 179, 216, .28);
+}
+
+.template-satin-blue::before {
+  inset: 4%;
+  border-radius: 48% 48% 0 0;
+  border-color: rgba(198, 163, 102, .42);
+}
+
+.template-satin-blue::after {
+  background:
+    radial-gradient(circle at 20% 22%, rgba(207, 229, 255, .12), rgba(207, 229, 255, 0) 24%),
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,0) 58%);
+}
+
+.template-satin-blue .glow-one,
+.template-satin-blue .glow-two {
+  background: radial-gradient(circle, rgba(207, 229, 255, .18), rgba(207, 229, 255, 0) 68%);
+}
+
+.template-satin-blue .mist-layer {
+  background:
+    radial-gradient(ellipse at 18% 72%, rgba(49, 95, 150, .24), rgba(49, 95, 150, 0) 46%),
+    linear-gradient(0deg, rgba(7, 22, 44, .62), rgba(7, 22, 44, 0));
+}
+
+.template-satin-blue .invite-label,
+.template-satin-blue .time-block strong,
+.template-satin-blue .date-block p,
+.template-satin-blue .date-block em,
+.template-satin-blue .location-block h2 {
+  color: #eef6ff;
+}
+
+.template-satin-blue .guest-name,
+.template-satin-blue .date-block strong,
+.template-satin-blue .time-block p {
+  color: #90b3d8;
+}
+
+.template-satin-blue .graduate-title,
+.template-satin-blue .graduate-mark p {
+  color: #cfe5ff;
+  font-family: var(--script);
+}
+
+.template-satin-blue .graduate-title {
+  font-size: clamp(58px, 12vw, 122px);
+}
+
+.template-satin-blue .date-block {
+  background: rgba(255,255,255,.045);
+  border-block-color: rgba(198, 163, 102, .42);
+}
+
+.template-satin-blue .date-block span {
+  color: #ffffff;
+}
+
+.template-satin-blue .vertical-ribbon {
+  background: linear-gradient(180deg, #90b3d8 0%, #173a67 100%);
+}
+
+.template-satin-blue .ribbon-emblem {
+  background: rgba(255,255,255,.94);
+}
+
+.template-satin-blue .congrats-ribbon {
+  background: linear-gradient(90deg, #173a67, #90b3d8 54%, #102b4d);
+}
+
+.template-satin-blue .graduate-mark strong,
+.template-satin-blue .heart-ornament,
+.template-satin-blue .ornament {
+  color: #c6a366;
+}
+
+.template-satin-blue .pin-icon,
+.template-satin-blue .graduate-mark i {
+  color: #90b3d8;
+  fill: #90b3d8;
+}
+
+.template-satin-blue .location-block p {
+  color: #b6c7da;
+}
+
+.template-satin-blue .flower-cluster,
+.template-satin-blue .petal {
+  opacity: .07;
+}
+
+.template-satin-blue .figure-light {
+  background: radial-gradient(ellipse at 48% 40%, rgba(207,229,255,.2), rgba(49, 95, 150, .18) 55%, rgba(49, 95, 150, 0) 74%);
+}
+
+.template-satin-blue .graduate-figure {
+  right: 0;
+  bottom: 0;
+  width: 45%;
+  height: 70%;
+}
+
+/* Controls */
+.control-panel {
+  position: sticky;
+  top: 24px;
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  background: rgba(255, 250, 251, .86);
+  border: 1px solid rgba(203, 154, 169, .35);
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(142, 83, 103, .12);
+  backdrop-filter: blur(16px);
+}
+
+.panel-heading p,
+.panel-heading h2 {
+  margin: 0;
+}
+
+.panel-heading p {
+  color: var(--rose);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.panel-heading h2 {
+  margin-top: 5px;
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.editor-form {
+  display: grid;
+  gap: 13px;
+}
+
+.editor-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.editor-form span,
+.toggle-row span {
+  color: #5f5356;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.editor-form input[type="text"],
+.editor-form input[type="file"],
+.editor-form select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid rgba(198, 137, 155, .44);
+  border-radius: 6px;
+  outline: none;
+  background: #fff;
+  color: var(--ink);
+  padding: 9px 11px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.editor-form input:focus,
+.editor-form select:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(201, 120, 142, .16);
+}
+
+.editor-form select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #9b6b78 50%),
+    linear-gradient(135deg, #9b6b78 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 18px,
+    calc(100% - 12px) 18px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.field-grid.two-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.toggle-row {
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: center;
+  gap: 9px !important;
+  margin-top: 2px;
+}
+
+.toggle-row input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--rose);
+}
+
+.download-button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 6px;
+  color: #fff;
+  background: linear-gradient(135deg, #2c2427, #8d5262 58%, #c9788e);
+  box-shadow: 0 16px 28px rgba(128, 70, 86, .2);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.download-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 34px rgba(128, 70, 86, .26);
+}
+
+.download-button:disabled {
+  cursor: wait;
+  opacity: .7;
+  transform: none;
+}
+
+.status-message {
+  min-height: 20px;
+  margin: -6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace {
+    min-height: auto;
+  }
+
+  .card-frame {
+    width: min(100%, 92vh, 640px);
+  }
+
+  .control-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    padding: 12px;
+  }
+
+  .card-frame {
+    width: 100%;
+  }
+
+  .control-panel {
+    padding: 16px;
+  }
+
+  .field-grid,
+  .field-grid.two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
