@@ -33,6 +33,10 @@ body {
   font-family: var(--sans);
 }
 
+body.custom-page-bg {
+  background: var(--page-bg);
+}
+
 button,
 input {
   font: inherit;
@@ -2184,6 +2188,57 @@ body.no-animation .petal {
   border-color: rgba(var(--custom-accent-rgb), .32);
 }
 
+.invitation-card.custom-colors-active.background-soft {
+  background:
+    radial-gradient(circle at 16% 16%, rgba(var(--custom-accent-rgb), .2), rgba(var(--custom-accent-rgb), 0) 30%),
+    radial-gradient(circle at 86% 78%, rgba(var(--custom-bg-deep-rgb), .14), rgba(var(--custom-bg-deep-rgb), 0) 30%),
+    var(--custom-bg);
+}
+
+.invitation-card.custom-colors-active.background-split {
+  background:
+    linear-gradient(90deg, var(--custom-bg) 0 58%, rgba(var(--custom-bg-deep-rgb), .18) 58% 100%),
+    var(--custom-bg);
+}
+
+.invitation-card.custom-colors-active.background-solid .glow-one,
+.invitation-card.custom-colors-active.background-solid .glow-two,
+.invitation-card.custom-colors-active.background-solid .mist-layer,
+.invitation-card.custom-colors-active.background-solid .flower-cluster,
+.invitation-card.custom-colors-active.background-solid .petal {
+  display: none;
+}
+
+.invitation-card.custom-colors-active.background-dark {
+  background: var(--custom-bg-deep);
+  color: var(--custom-bg);
+}
+
+.invitation-card.custom-colors-active.background-clean::after {
+  background: none;
+}
+
+.invitation-card.custom-colors-active.background-clean .glow-one,
+.invitation-card.custom-colors-active.background-clean .glow-two,
+.invitation-card.custom-colors-active.background-clean .mist-layer,
+.invitation-card.custom-colors-active.background-clean .flower-cluster,
+.invitation-card.custom-colors-active.background-clean .petal {
+  display: none;
+}
+
+.invitation-card.custom-colors-active.background-dark .invite-label,
+.invitation-card.custom-colors-active.background-dark .date-block p,
+.invitation-card.custom-colors-active.background-dark .date-block em,
+.invitation-card.custom-colors-active.background-dark .time-block strong,
+.invitation-card.custom-colors-active.background-dark .location-block h2 {
+  color: var(--custom-bg);
+}
+
+.invitation-card.custom-colors-active.background-dark .location-block p {
+  color: var(--custom-bg);
+  opacity: .72;
+}
+
 .invitation-card.custom-colors-active::before {
   border-color: rgba(var(--custom-gold-rgb), .44);
 }
@@ -2271,9 +2326,23 @@ body.no-animation .petal {
   background: radial-gradient(ellipse at 48% 40%, rgba(255,255,255,.84), rgba(var(--custom-accent-rgb), .18) 55%, rgba(var(--custom-accent-rgb), 0) 74%);
 }
 
+.invitation-card.custom-colors-active .mist-layer {
+  background:
+    radial-gradient(ellipse at 18% 72%, rgba(var(--custom-accent-rgb), .16), rgba(var(--custom-accent-rgb), 0) 48%),
+    radial-gradient(ellipse at 78% 76%, rgba(var(--custom-bg-deep-rgb), .16), rgba(var(--custom-bg-deep-rgb), 0) 48%),
+    linear-gradient(0deg, rgba(var(--custom-bg-rgb), .7), rgba(var(--custom-bg-rgb), 0));
+}
+
+.invitation-card.custom-colors-active.background-dark .mist-layer {
+  background:
+    radial-gradient(ellipse at 18% 72%, rgba(var(--custom-accent-rgb), .2), rgba(var(--custom-accent-rgb), 0) 48%),
+    radial-gradient(ellipse at 78% 76%, rgba(var(--custom-gold-rgb), .16), rgba(var(--custom-gold-rgb), 0) 48%),
+    linear-gradient(0deg, rgba(0, 0, 0, .26), rgba(0, 0, 0, 0));
+}
+
 .invitation-card.custom-colors-active .flower-cluster,
 .invitation-card.custom-colors-active .petal {
-  opacity: .16;
+  opacity: 0;
 }
 
 .template-left-rose,
@@ -3407,6 +3476,15 @@ body.no-animation .petal {
   font-weight: 700;
   letter-spacing: .16em;
   text-transform: uppercase;
+}
+
+.background-style-row {
+  display: grid;
+  gap: 6px;
+}
+
+.background-style-row span {
+  color: #7a5963;
 }
 
 .color-grid {

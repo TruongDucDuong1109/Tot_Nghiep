@@ -158,6 +158,16 @@
 
         <fieldset class="custom-color-panel" aria-label="Tùy chỉnh màu thiệp">
           <legend>Tùy chỉnh màu</legend>
+          <label class="background-style-row">
+            <span>Kiểu nền</span>
+            <select id="customBgStyle">
+              <option value="solid">Nền phẳng</option>
+              <option value="soft">Nền mềm</option>
+              <option value="split">Chia mảng</option>
+              <option value="dark">Nền tối</option>
+              <option value="clean">Tắt họa tiết</option>
+            </select>
+          </label>
           <div class="color-grid">
             <label>
               <span>Nền chính</span>
@@ -182,6 +192,10 @@
             <label>
               <span>Trang trí</span>
               <input type="color" id="customGoldColor" value="#c6a366">
+            </label>
+            <label>
+              <span>Nền ngoài</span>
+              <input type="color" id="pageBgColor" value="#f2f7fb">
             </label>
           </div>
           <button id="resetColorButton" class="reset-color-button" type="button">Về màu mẫu</button>

@@ -18,8 +18,10 @@ const customColorInputs = {
   text: document.getElementById("customTextColor"),
   accent: document.getElementById("customAccentColor"),
   ribbon: document.getElementById("customRibbonColor"),
-  gold: document.getElementById("customGoldColor")
+  gold: document.getElementById("customGoldColor"),
+  page: document.getElementById("pageBgColor")
 };
+const customBgStyle = document.getElementById("customBgStyle");
 
 const templateClasses = [
   "template-rose",
@@ -58,6 +60,13 @@ const templateClasses = [
   "template-luxury-frame",
   "template-photo-spotlight",
   "template-card-stack"
+];
+const backgroundModeClasses = [
+  "background-solid",
+  "background-soft",
+  "background-split",
+  "background-dark",
+  "background-clean"
 ];
 
 let uploadedPhotoUrl = "";
@@ -125,14 +134,22 @@ function applyCustomColors(activate = true) {
   card.style.setProperty("--custom-accent", customColorInputs.accent.value);
   card.style.setProperty("--custom-ribbon", customColorInputs.ribbon.value);
   card.style.setProperty("--custom-gold", customColorInputs.gold.value);
+  document.body.style.setProperty("--page-bg", customColorInputs.page.value);
   setRgbVariable("--custom-bg-rgb", customColorInputs.bg.value);
   setRgbVariable("--custom-bg-deep-rgb", customColorInputs.deep.value);
   setRgbVariable("--custom-accent-rgb", customColorInputs.accent.value);
   setRgbVariable("--custom-ribbon-rgb", customColorInputs.ribbon.value);
   setRgbVariable("--custom-gold-rgb", customColorInputs.gold.value);
+  applyBackgroundMode();
   if (activate) {
     card.classList.add("custom-colors-active");
+    document.body.classList.add("custom-page-bg");
   }
+}
+
+function applyBackgroundMode() {
+  card.classList.remove(...backgroundModeClasses);
+  card.classList.add(`background-${customBgStyle.value}`);
 }
 
 form.addEventListener("input", (event) => {
@@ -159,8 +176,15 @@ Object.values(customColorInputs).forEach((input) => {
   });
 });
 
+customBgStyle.addEventListener("change", () => {
+  applyCustomColors();
+  setStatus(`Đã đổi kiểu nền trên mẫu ${styleSelect.options[styleSelect.selectedIndex].text}.`);
+});
+
 resetColorButton.addEventListener("click", () => {
   card.classList.remove("custom-colors-active");
+  card.classList.remove(...backgroundModeClasses);
+  document.body.classList.remove("custom-page-bg");
   setStatus(`Đã đưa ${styleSelect.options[styleSelect.selectedIndex].text} về màu gốc.`);
 });
 
