@@ -7,8 +7,19 @@ const graduateImage = document.getElementById("graduateImage");
 const schoolLogo = document.getElementById("schoolLogo");
 const ribbonEmblem = document.querySelector(".ribbon-emblem");
 const animationToggle = document.getElementById("animationToggle");
+const mirrorToggle = document.getElementById("mirrorToggle");
 const downloadButton = document.getElementById("downloadButton");
+const resetColorButton = document.getElementById("resetColorButton");
 const statusMessage = document.getElementById("statusMessage");
+
+const customColorInputs = {
+  bg: document.getElementById("customBgColor"),
+  deep: document.getElementById("customBgDeepColor"),
+  text: document.getElementById("customTextColor"),
+  accent: document.getElementById("customAccentColor"),
+  ribbon: document.getElementById("customRibbonColor"),
+  gold: document.getElementById("customGoldColor")
+};
 
 const templateClasses = [
   "template-rose",
@@ -26,7 +37,27 @@ const templateClasses = [
   "template-blueprint",
   "template-midnight-script",
   "template-navy-gold",
-  "template-satin-blue"
+  "template-satin-blue",
+  "template-seafoam",
+  "template-aqua-light",
+  "template-coastal",
+  "template-left-rose",
+  "template-left-ocean",
+  "template-left-navy",
+  "template-solid-cream",
+  "template-solid-blush",
+  "template-solid-sea",
+  "template-solid-navy",
+  "template-split-luxe",
+  "template-arch-photo",
+  "template-date-sidebar",
+  "template-center-poster",
+  "template-diagonal",
+  "template-bottom-stage",
+  "template-minimal-line",
+  "template-luxury-frame",
+  "template-photo-spotlight",
+  "template-card-stack"
 ];
 
 let uploadedPhotoUrl = "";
@@ -66,6 +97,44 @@ function downloadCanvas(canvas) {
   link.click();
 }
 
+function hexToRgb(hex) {
+  const cleanHex = hex.replace("#", "");
+  const value = Number.parseInt(cleanHex, 16);
+
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255
+  };
+}
+
+function setRgbVariable(name, hex) {
+  const { r, g, b } = hexToRgb(hex);
+  card.style.setProperty(name, `${r}, ${g}, ${b}`);
+}
+
+function applyTemplate(templateName) {
+  card.classList.remove(...templateClasses);
+  card.classList.add(templateName);
+}
+
+function applyCustomColors(activate = true) {
+  card.style.setProperty("--custom-bg", customColorInputs.bg.value);
+  card.style.setProperty("--custom-bg-deep", customColorInputs.deep.value);
+  card.style.setProperty("--custom-text", customColorInputs.text.value);
+  card.style.setProperty("--custom-accent", customColorInputs.accent.value);
+  card.style.setProperty("--custom-ribbon", customColorInputs.ribbon.value);
+  card.style.setProperty("--custom-gold", customColorInputs.gold.value);
+  setRgbVariable("--custom-bg-rgb", customColorInputs.bg.value);
+  setRgbVariable("--custom-bg-deep-rgb", customColorInputs.deep.value);
+  setRgbVariable("--custom-accent-rgb", customColorInputs.accent.value);
+  setRgbVariable("--custom-ribbon-rgb", customColorInputs.ribbon.value);
+  setRgbVariable("--custom-gold-rgb", customColorInputs.gold.value);
+  if (activate) {
+    card.classList.add("custom-colors-active");
+  }
+}
+
 form.addEventListener("input", (event) => {
   const input = event.target;
   const target = input.dataset.target;
@@ -78,9 +147,21 @@ form.addEventListener("input", (event) => {
 });
 
 styleSelect.addEventListener("change", () => {
-  card.classList.remove(...templateClasses);
-  card.classList.add(styleSelect.value);
+  applyTemplate(styleSelect.value);
+
   setStatus(`Đã đổi sang mẫu ${styleSelect.options[styleSelect.selectedIndex].text}.`);
+});
+
+Object.values(customColorInputs).forEach((input) => {
+  input.addEventListener("input", () => {
+    applyCustomColors();
+    setStatus(`Đã cập nhật màu trên mẫu ${styleSelect.options[styleSelect.selectedIndex].text}.`);
+  });
+});
+
+resetColorButton.addEventListener("click", () => {
+  card.classList.remove("custom-colors-active");
+  setStatus(`Đã đưa ${styleSelect.options[styleSelect.selectedIndex].text} về màu gốc.`);
 });
 
 photoInput.addEventListener("change", () => {
@@ -118,6 +199,11 @@ logoInput.addEventListener("change", () => {
 
 animationToggle.addEventListener("change", () => {
   document.body.classList.toggle("no-animation", !animationToggle.checked);
+});
+
+mirrorToggle.addEventListener("change", () => {
+  card.classList.toggle("photo-mirrored", mirrorToggle.checked);
+  setStatus(mirrorToggle.checked ? "Đã lật ảnh ngang." : "Đã đưa ảnh về chiều gốc.");
 });
 
 downloadButton.addEventListener("click", async () => {
@@ -158,3 +244,5 @@ downloadButton.addEventListener("click", async () => {
     downloadButton.disabled = false;
   }
 });
+
+applyCustomColors(false);

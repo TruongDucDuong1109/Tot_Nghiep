@@ -117,24 +117,75 @@
         <label>
           <span>Mẫu thiệp</span>
           <select id="styleSelect" name="styleSelect">
-            <option value="template-rose">Rose Gold</option>
-            <option value="template-ivory">Ivory Gold</option>
-            <option value="template-modern">Modern Blush</option>
-            <option value="template-pearl">Pearl Pink</option>
-            <option value="template-editorial">Editorial Black</option>
-            <option value="template-sage">Sage Garden</option>
-            <option value="template-lavender">Lavender Dream</option>
-            <option value="template-burgundy">Burgundy Gala</option>
-            <option value="template-sky">Sky Blue Classic</option>
-            <option value="template-ocean">Ocean Teal</option>
-            <option value="template-navy">Deep Navy</option>
-            <option value="template-royal">Royal Blue</option>
-            <option value="template-blueprint">Blue Minimal</option>
-            <option value="template-midnight-script">Midnight Script</option>
-            <option value="template-navy-gold">Navy Gold</option>
-            <option value="template-satin-blue">Satin Blue</option>
+            <option value="template-rose">Hồng Rose Gold</option>
+            <option value="template-ivory">Ngà Vàng Đồng</option>
+            <option value="template-modern">Hồng Hiện Đại</option>
+            <option value="template-pearl">Hồng Ngọc Trai</option>
+            <option value="template-editorial">Đen Tạp Chí</option>
+            <option value="template-sage">Xanh Lá Dịu</option>
+            <option value="template-lavender">Tím Lavender</option>
+            <option value="template-burgundy">Đỏ Rượu Sang Trọng</option>
+            <option value="template-sky">Xanh Trời Cổ Điển</option>
+            <option value="template-ocean">Xanh Đại Dương</option>
+            <option value="template-navy">Xanh Navy Đậm</option>
+            <option value="template-royal">Xanh Hoàng Gia</option>
+            <option value="template-blueprint">Xanh Tối Giản</option>
+            <option value="template-midnight-script">Navy Chữ Nghệ Thuật</option>
+            <option value="template-navy-gold">Navy Vàng Đồng</option>
+            <option value="template-satin-blue">Xanh Satin</option>
+            <option value="template-seafoam">Xanh Biển Nhạt</option>
+            <option value="template-aqua-light">Xanh Aqua Sáng</option>
+            <option value="template-coastal">Xanh Ven Biển</option>
+            <option value="template-left-rose">Ảnh Trái Rose Gold</option>
+            <option value="template-left-ocean">Ảnh Trái Xanh Biển</option>
+            <option value="template-left-navy">Ảnh Trái Navy Đậm</option>
+            <option value="template-solid-cream">Nền Phẳng Trắng Ngà</option>
+            <option value="template-solid-blush">Nền Phẳng Hồng Phấn</option>
+            <option value="template-solid-sea">Nền Phẳng Xanh Biển</option>
+            <option value="template-solid-navy">Nền Phẳng Navy</option>
+            <option value="template-split-luxe">Chia Đôi Sang Trọng</option>
+            <option value="template-arch-photo">Khung Vòm Ảnh</option>
+            <option value="template-date-sidebar">Cột Ngày Nổi Bật</option>
+            <option value="template-center-poster">Poster Trung Tâm</option>
+            <option value="template-diagonal">Mảng Chéo Hiện Đại</option>
+            <option value="template-bottom-stage">Sân Khấu Dưới</option>
+            <option value="template-minimal-line">Đường Nét Tối Giản</option>
+            <option value="template-luxury-frame">Khung Viền Cao Cấp</option>
+            <option value="template-photo-spotlight">Ảnh Spotlight</option>
+            <option value="template-card-stack">Xếp Lớp Card</option>
           </select>
         </label>
+
+        <fieldset class="custom-color-panel" aria-label="Tùy chỉnh màu thiệp">
+          <legend>Tùy chỉnh màu</legend>
+          <div class="color-grid">
+            <label>
+              <span>Nền chính</span>
+              <input type="color" id="customBgColor" value="#e7f6fb">
+            </label>
+            <label>
+              <span>Nền phụ</span>
+              <input type="color" id="customBgDeepColor" value="#0f2f4f">
+            </label>
+            <label>
+              <span>Màu chữ</span>
+              <input type="color" id="customTextColor" value="#12365f">
+            </label>
+            <label>
+              <span>Màu chủ đạo</span>
+              <input type="color" id="customAccentColor" value="#2f8fc5">
+            </label>
+            <label>
+              <span>Ruy băng</span>
+              <input type="color" id="customRibbonColor" value="#1f5f8f">
+            </label>
+            <label>
+              <span>Trang trí</span>
+              <input type="color" id="customGoldColor" value="#c6a366">
+            </label>
+          </div>
+          <button id="resetColorButton" class="reset-color-button" type="button">Về màu mẫu</button>
+        </fieldset>
 
         <label>
           <span>Tên người được mời</span>
@@ -195,6 +246,11 @@
         <label>
           <span>Ảnh người tốt nghiệp</span>
           <input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp">
+        </label>
+
+        <label class="toggle-row">
+          <input id="mirrorToggle" type="checkbox">
+          <span>Lật ảnh ngang</span>
         </label>
 
         <label>
