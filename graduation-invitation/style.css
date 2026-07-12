@@ -48,15 +48,17 @@ button {
 
 .app-shell {
   display: grid;
-  grid-template-columns: minmax(320px, 1fr) minmax(280px, 390px);
-  gap: clamp(18px, 3vw, 42px);
+  grid-template-columns: minmax(360px, 1fr) minmax(420px, 480px);
+  gap: clamp(18px, 2.4vw, 34px);
   align-items: start;
-  width: min(1420px, 100%);
+  width: min(1560px, 100%);
   margin: 0 auto;
   padding: clamp(18px, 3vw, 40px);
 }
 
 .workspace {
+  position: sticky;
+  top: clamp(18px, 3vw, 40px);
   display: grid;
   min-height: calc(100vh - clamp(36px, 6vw, 80px));
   place-items: center;
@@ -74,6 +76,14 @@ button {
   height: 100%;
   overflow: hidden;
   isolation: isolate;
+  --photo-x: 0%;
+  --photo-y: 0%;
+  --photo-scale: 1;
+  --custom-background-image: none;
+  --custom-background-x: 0%;
+  --custom-background-y: 0%;
+  --custom-background-size: 100%;
+  --custom-background-opacity: 1;
   color: var(--ink);
   background:
     radial-gradient(circle at 66% 36%, rgba(255, 255, 255, .9) 0 9%, rgba(255, 255, 255, 0) 24%),
@@ -81,6 +91,25 @@ button {
     linear-gradient(145deg, #ffffff 0%, #fff7f9 54%, #fff0f5 100%);
   border: 1px solid rgba(203, 154, 169, .35);
   box-shadow: var(--shadow);
+}
+
+.custom-background-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: none;
+  pointer-events: none;
+  background-image: var(--custom-background-image);
+  background-repeat: no-repeat;
+  background-position:
+    calc(50% + var(--custom-background-x))
+    calc(50% + var(--custom-background-y));
+  background-size: var(--custom-background-size) auto;
+  opacity: var(--custom-background-opacity);
+}
+
+.invitation-card.has-custom-background .custom-background-layer {
+  display: block;
 }
 
 .invitation-card::before {
@@ -239,6 +268,11 @@ body.no-animation .petal {
   display: none;
 }
 
+.ribbon-name,
+.ribbon-subtitle {
+  display: none;
+}
+
 .laurel,
 .tassel {
   stroke: #f7e8bd;
@@ -390,6 +424,10 @@ body.no-animation .petal {
   font-size: clamp(19px, 3.8vw, 39px);
   font-weight: 600;
   letter-spacing: .03em;
+}
+
+.signature-name {
+  display: none;
 }
 
 .ornament {
@@ -581,10 +619,12 @@ body.no-animation .petal {
   height: 100%;
   object-fit: contain;
   object-position: bottom right;
+  transform: translate(var(--photo-x), var(--photo-y)) scale(var(--photo-scale));
+  transform-origin: bottom center;
 }
 
 .photo-mirrored .graduate-figure img {
-  transform: scaleX(-1);
+  transform: translate(var(--photo-x), var(--photo-y)) scaleX(-1) scale(var(--photo-scale));
 }
 
 /* Invitation templates */
@@ -3407,18 +3447,363 @@ body.no-animation .petal {
   background: #80516c;
 }
 
+.template-paper-ribbon {
+  --rose: #8f2029;
+  --muted: #62595a;
+  --gold: #8f2029;
+  color: #161414;
+  background: linear-gradient(145deg, #fbfbf8 0%, #f7f7f4 100%);
+  border-color: rgba(25, 22, 20, .14);
+  box-shadow: 0 28px 72px rgba(30, 24, 22, .16);
+}
+
+.template-paper-ribbon::before,
+.template-paper-ribbon .glow-one,
+.template-paper-ribbon .glow-two,
+.template-paper-ribbon .mist-layer,
+.template-paper-ribbon .flower-cluster,
+.template-paper-ribbon .petal,
+.template-paper-ribbon .figure-light,
+.template-paper-ribbon .pin-icon,
+.template-paper-ribbon .title-swash {
+  display: none;
+}
+
+.template-paper-ribbon::after {
+  display: none;
+}
+
+.template-paper-ribbon .vertical-ribbon {
+  top: 0;
+  right: auto;
+  left: 4.2%;
+  width: 9%;
+  height: 39%;
+  background: linear-gradient(180deg, #a92c31 0%, #7c161c 100%);
+  border-inline: 1px solid rgba(255,255,255,.6);
+  box-shadow: 0 15px 26px rgba(80, 20, 22, .2);
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+}
+
+.template-paper-ribbon .vertical-ribbon::before {
+  content: "";
+  position: absolute;
+  inset: 2.5% 13% 8%;
+  border: 1px solid rgba(255,255,255,.34);
+  border-bottom: 0;
+}
+
+.template-paper-ribbon .vertical-ribbon::after {
+  display: none;
+}
+
+.template-paper-ribbon .ribbon-emblem {
+  width: 68%;
+  margin-top: 37%;
+  border: 2px solid rgba(255, 255, 255, .76);
+  border-radius: 999px;
+  overflow: hidden;
+  background: #fff7f4;
+}
+
+.template-paper-ribbon .ribbon-emblem::before {
+  content: "*";
+  position: absolute;
+  top: -44%;
+  left: 50%;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: clamp(15px, 2.7vw, 28px);
+  font-weight: 400;
+  transform: translateX(-50%);
+}
+
+.template-paper-ribbon .school-logo {
+  width: 82%;
+  height: 82%;
+  filter: none;
+  object-fit: contain;
+  opacity: 1;
+}
+
+.template-paper-ribbon .default-emblem {
+  width: 72%;
+}
+
+.template-paper-ribbon .ribbon-name,
+.template-paper-ribbon .ribbon-subtitle {
+  position: absolute;
+  left: 50%;
+  display: block;
+  width: 265%;
+  color: rgba(255,255,255,.94);
+  text-align: center;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.template-paper-ribbon .ribbon-name {
+  top: 57%;
+  font-family: var(--serif);
+  font-size: clamp(9px, 1.58vw, 16px);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.1;
+}
+
+.template-paper-ribbon .ribbon-subtitle {
+  top: 75%;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(4.5px, .82vw, 8.5px);
+  font-weight: 600;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.template-paper-ribbon .ribbon-emblem:not(.has-logo) .default-emblem {
+  display: block;
+}
+
+.template-paper-ribbon .card-header {
+  inset: 6.2% 9% auto 16.8%;
+  z-index: 14;
+  min-height: 23%;
+  text-align: right;
+}
+
+.template-paper-ribbon .invite-label {
+  position: absolute;
+  left: 0;
+  top: 12.5%;
+  width: 31%;
+  height: 1px;
+  overflow: hidden;
+  background: #171414;
+  color: transparent;
+  letter-spacing: 0;
+}
+
+.template-paper-ribbon .guest-name {
+  display: none;
+}
+
+.template-paper-ribbon .graduate-title {
+  margin: 0;
+  color: #1b1716;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(10px, 1.95vw, 20px);
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-shadow: none;
+}
+
+.template-paper-ribbon .card-header::before {
+  content: "Graduation";
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  color: #111;
+  font-family: var(--serif);
+  font-size: clamp(52px, 10vw, 104px);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: .86;
+  text-align: center;
+}
+
+.template-paper-ribbon .card-header::after {
+  content: "Ceremony";
+  position: absolute;
+  top: 60%;
+  left: 0;
+  right: 4%;
+  color: #111;
+  font-family: var(--script);
+  font-size: clamp(58px, 11.5vw, 118px);
+  font-weight: 400;
+  line-height: .78;
+  text-align: center;
+}
+
+.template-paper-ribbon .congrats-area {
+  left: 11.8%;
+  bottom: auto;
+  top: 40.7%;
+  z-index: 12;
+  width: 34%;
+  min-height: 16%;
+  padding-top: 3.8%;
+  border-top: 1px solid rgba(17,17,17,.65);
+  color: #2b2727;
+}
+
+.template-paper-ribbon .congrats-ribbon {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #211d1d;
+  background: transparent;
+  box-shadow: none;
+  clip-path: none;
+  transform: none;
+}
+
+.template-paper-ribbon .congrats-ribbon::before {
+  display: none;
+}
+
+.template-paper-ribbon .congrats-ribbon span {
+  font-family: "Montserrat", var(--sans);
+  font-size: 0;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-align: left;
+}
+
+.template-paper-ribbon .congrats-ribbon span::after {
+  content: "THÂN MỜI BẠN ĐẾN DỰ";
+  font-size: clamp(9px, 1.55vw, 16px);
+}
+
+.template-paper-ribbon .graduate-mark,
+.template-paper-ribbon .heart-ornament {
+  display: none;
+}
+
+.template-paper-ribbon .congrats-area::after {
+  content: "Sự hiện diện và những lời chúc tốt đẹp của bạn sẽ làm cho ngày này trở nên đáng nhớ hơn bao giờ hết!";
+  display: block;
+  width: 86%;
+  margin-top: 13%;
+  color: #665e5e;
+  font-size: clamp(9px, 1.65vw, 17px);
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.template-paper-ribbon .event-row {
+  top: 61.8%;
+  left: 11.8%;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  width: 34%;
+  min-height: 0;
+  padding: 3% 0 3.2%;
+  border-top: 1px solid rgba(17,17,17,.65);
+  border-bottom: 1px solid rgba(17,17,17,.65);
+}
+
+.template-paper-ribbon .signature-name {
+  display: block;
+  position: absolute;
+  left: 8%;
+  top: calc(100% + 48%);
+  margin: 0;
+  color: #352d2d;
+  font-family: var(--script);
+  font-size: clamp(23px, 4.2vw, 44px);
+  font-weight: 400;
+  line-height: 1;
+  transform: rotate(-4deg);
+}
+
+.template-paper-ribbon .date-block,
+.template-paper-ribbon .time-block {
+  display: contents;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.template-paper-ribbon .date-block::after,
+.template-paper-ribbon .date-block p,
+.template-paper-ribbon .date-block em,
+.template-paper-ribbon .time-block p,
+.template-paper-ribbon .ornament {
+  display: none;
+}
+
+.template-paper-ribbon .date-block strong,
+.template-paper-ribbon .date-block span,
+.template-paper-ribbon .time-block strong {
+  margin: 0;
+  color: #2b1718;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(8px, 1.44vw, 15px);
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1;
+}
+
+.template-paper-ribbon .date-block strong::after,
+.template-paper-ribbon .date-block span::after {
+  content: " | ";
+  padding: 0 .55em;
+  color: #171414;
+  font-weight: 500;
+}
+
+.template-paper-ribbon .location-block {
+  top: auto;
+  left: 11.8%;
+  bottom: 4.3%;
+  z-index: 12;
+  display: block;
+  width: 75%;
+  text-align: center;
+}
+
+.template-paper-ribbon .location-block h2 {
+  color: #6a2226;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(8px, 1.52vw, 16px);
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.35;
+}
+
+.template-paper-ribbon .location-block p {
+  margin-top: .6%;
+  color: #5d5554;
+  font-size: clamp(7px, 1.25vw, 13px);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.template-paper-ribbon .graduate-figure {
+  right: -1.5%;
+  bottom: 2.4%;
+  z-index: 10;
+  width: 46%;
+  height: 61%;
+}
+
+.template-paper-ribbon .graduate-figure img {
+  object-position: bottom right;
+}
+
 /* Controls */
 .control-panel {
   position: sticky;
   top: 24px;
   display: grid;
   gap: 18px;
+  width: 100%;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 22px;
   background: rgba(255, 250, 251, .86);
   border: 1px solid rgba(203, 154, 169, .35);
   border-radius: 8px;
   box-shadow: 0 24px 60px rgba(142, 83, 103, .12);
   backdrop-filter: blur(16px);
+  scrollbar-gutter: stable;
 }
 
 .panel-heading p,
@@ -3459,7 +3844,9 @@ body.no-animation .petal {
   font-weight: 600;
 }
 
-.custom-color-panel {
+.custom-color-panel,
+.background-image-panel,
+.photo-position-panel {
   display: grid;
   gap: 10px;
   margin: 0;
@@ -3469,13 +3856,33 @@ body.no-animation .petal {
   background: rgba(255, 255, 255, .56);
 }
 
-.custom-color-panel legend {
+.custom-color-panel legend,
+.background-image-panel legend,
+.photo-position-panel legend {
   padding: 0 6px;
   color: #8b6470;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .16em;
   text-transform: uppercase;
+}
+
+.background-image-panel label,
+.photo-position-panel label {
+  display: grid;
+  gap: 6px;
+}
+
+.background-image-panel input[type="range"],
+.photo-position-panel input[type="range"] {
+  width: 100%;
+  accent-color: var(--rose);
+}
+
+.panel-button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .background-style-row {
@@ -3624,6 +4031,7 @@ body.no-animation .petal {
   }
 
   .workspace {
+    position: static;
     min-height: auto;
   }
 
@@ -3633,6 +4041,8 @@ body.no-animation .petal {
 
   .control-panel {
     position: static;
+    max-height: none;
+    overflow: visible;
   }
 }
 

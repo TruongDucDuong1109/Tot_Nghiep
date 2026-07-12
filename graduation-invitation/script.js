@@ -10,7 +10,23 @@ const animationToggle = document.getElementById("animationToggle");
 const mirrorToggle = document.getElementById("mirrorToggle");
 const downloadButton = document.getElementById("downloadButton");
 const resetColorButton = document.getElementById("resetColorButton");
+const resetPhotoPositionButton = document.getElementById("resetPhotoPositionButton");
+const backgroundFolderInput = document.getElementById("backgroundFolderInput");
+const backgroundImageSelect = document.getElementById("backgroundImageSelect");
+const resetBackgroundPositionButton = document.getElementById("resetBackgroundPositionButton");
+const removeBackgroundButton = document.getElementById("removeBackgroundButton");
 const statusMessage = document.getElementById("statusMessage");
+const photoMoveInputs = {
+  x: document.getElementById("photoMoveX"),
+  y: document.getElementById("photoMoveY"),
+  scale: document.getElementById("photoScale")
+};
+const backgroundControls = {
+  x: document.getElementById("backgroundMoveX"),
+  y: document.getElementById("backgroundMoveY"),
+  scale: document.getElementById("backgroundScale"),
+  opacity: document.getElementById("backgroundOpacity")
+};
 
 const customColorInputs = {
   bg: document.getElementById("customBgColor"),
@@ -59,7 +75,8 @@ const templateClasses = [
   "template-minimal-line",
   "template-luxury-frame",
   "template-photo-spotlight",
-  "template-card-stack"
+  "template-card-stack",
+  "template-paper-ribbon"
 ];
 const backgroundModeClasses = [
   "background-solid",
@@ -68,9 +85,20 @@ const backgroundModeClasses = [
   "background-dark",
   "background-clean"
 ];
+const defaultBackgroundAssets = [
+  "./assets/background/background_loangmau.jpg",
+  "./assets/background/background_loangmau2.jpg",
+  "./assets/background/background_loangmau3.jpg",
+  "./assets/background/loang4.jpg",
+  "./assets/background/loang5.jpg",
+  "./assets/background/loang6.jpg",
+  "./assets/background/loang7.jpg",
+  "./assets/background/loang8.jpg"
+];
 
 let uploadedPhotoUrl = "";
 let uploadedLogoUrl = "";
+let backgroundOptions = [];
 
 function setStatus(message) {
   statusMessage.textContent = message;
@@ -152,6 +180,74 @@ function applyBackgroundMode() {
   card.classList.add(`background-${customBgStyle.value}`);
 }
 
+function applyPhotoPosition() {
+  card.style.setProperty("--photo-x", `${photoMoveInputs.x.value}%`);
+  card.style.setProperty("--photo-y", `${photoMoveInputs.y.value}%`);
+  card.style.setProperty("--photo-scale", Number(photoMoveInputs.scale.value) / 100);
+}
+
+function applyBackgroundPosition() {
+  card.style.setProperty("--custom-background-x", `${backgroundControls.x.value}%`);
+  card.style.setProperty("--custom-background-y", `${backgroundControls.y.value}%`);
+  card.style.setProperty("--custom-background-size", `${backgroundControls.scale.value}%`);
+  card.style.setProperty("--custom-background-opacity", Number(backgroundControls.opacity.value) / 100);
+}
+
+function clearBackgroundOptions() {
+  backgroundOptions.forEach((option) => {
+    if (option.revoke) {
+      URL.revokeObjectURL(option.url);
+    }
+  });
+  backgroundOptions = [];
+}
+
+function setCustomBackground(index) {
+  const option = backgroundOptions[index];
+
+  if (!option) {
+    card.classList.remove("has-custom-background");
+    card.style.removeProperty("--custom-background-image");
+    return;
+  }
+
+  card.style.setProperty("--custom-background-image", `url("${option.url}")`);
+  card.classList.add("has-custom-background");
+  setStatus(`Đã chọn background ${option.name}.`);
+}
+
+function renderBackgroundOptions(options, defaultMessage = "Chưa có background") {
+  backgroundImageSelect.innerHTML = "";
+
+  if (!options.length) {
+    backgroundImageSelect.disabled = true;
+    backgroundImageSelect.innerHTML = `<option value="">${defaultMessage}</option>`;
+    setCustomBackground(-1);
+    return;
+  }
+
+  options.forEach((option, index) => {
+    const selectOption = document.createElement("option");
+    selectOption.value = String(index);
+    selectOption.textContent = option.name;
+    backgroundImageSelect.append(selectOption);
+  });
+
+  backgroundImageSelect.disabled = false;
+  backgroundImageSelect.value = "0";
+  setCustomBackground(0);
+}
+
+function loadDefaultBackgroundAssets() {
+  clearBackgroundOptions();
+  backgroundOptions = defaultBackgroundAssets.map((url) => ({
+    name: url.split("/").pop(),
+    url,
+    revoke: false
+  }));
+  renderBackgroundOptions(backgroundOptions);
+}
+
 form.addEventListener("input", (event) => {
   const input = event.target;
   const target = input.dataset.target;
@@ -174,6 +270,73 @@ Object.values(customColorInputs).forEach((input) => {
     applyCustomColors();
     setStatus(`Đã cập nhật màu trên mẫu ${styleSelect.options[styleSelect.selectedIndex].text}.`);
   });
+});
+
+Object.values(photoMoveInputs).forEach((input) => {
+  input.addEventListener("input", () => {
+    applyPhotoPosition();
+    setStatus("Đã cập nhật vị trí ảnh.");
+  });
+});
+
+resetPhotoPositionButton.addEventListener("click", () => {
+  photoMoveInputs.x.value = 0;
+  photoMoveInputs.y.value = 0;
+  photoMoveInputs.scale.value = 100;
+  applyPhotoPosition();
+  setStatus("Đã đưa ảnh về vị trí mặc định.");
+});
+
+Object.values(backgroundControls).forEach((input) => {
+  input.addEventListener("input", () => {
+    applyBackgroundPosition();
+    setStatus("Đã cập nhật vị trí background.");
+  });
+});
+
+backgroundFolderInput.addEventListener("change", () => {
+  const files = [...(backgroundFolderInput.files || [])]
+    .filter((file) => file.type.startsWith("image/"))
+    .sort((a, b) => {
+      const nameA = a.webkitRelativePath || a.name;
+      const nameB = b.webkitRelativePath || b.name;
+      return nameA.localeCompare(nameB);
+    });
+
+  clearBackgroundOptions();
+
+  if (!files.length) {
+    renderBackgroundOptions([], "Không có ảnh trong folder");
+    setStatus("Folder chưa có ảnh PNG/JPG/WEBP.");
+    return;
+  }
+
+  backgroundOptions = files.map((file) => ({
+    name: file.webkitRelativePath || file.name,
+    url: URL.createObjectURL(file),
+    revoke: true
+  }));
+
+  renderBackgroundOptions(backgroundOptions);
+});
+
+backgroundImageSelect.addEventListener("change", () => {
+  setCustomBackground(Number(backgroundImageSelect.value));
+});
+
+resetBackgroundPositionButton.addEventListener("click", () => {
+  backgroundControls.x.value = 0;
+  backgroundControls.y.value = 0;
+  backgroundControls.scale.value = 100;
+  backgroundControls.opacity.value = 100;
+  applyBackgroundPosition();
+  setStatus("Đã đưa background về vị trí mặc định.");
+});
+
+removeBackgroundButton.addEventListener("click", () => {
+  backgroundImageSelect.value = "";
+  setCustomBackground(-1);
+  setStatus("Đã xóa background ảnh khỏi thiệp.");
 });
 
 customBgStyle.addEventListener("change", () => {
@@ -220,6 +383,18 @@ logoInput.addEventListener("change", () => {
   ribbonEmblem.classList.add("has-logo");
   setStatus("Logo trường đã được thêm vào vòng tròn.");
 });
+
+schoolLogo.addEventListener("load", () => {
+  ribbonEmblem.classList.add("has-logo");
+});
+
+schoolLogo.addEventListener("error", () => {
+  ribbonEmblem.classList.remove("has-logo");
+});
+
+if (schoolLogo.complete && schoolLogo.naturalWidth === 0) {
+  ribbonEmblem.classList.remove("has-logo");
+}
 
 animationToggle.addEventListener("change", () => {
   document.body.classList.toggle("no-animation", !animationToggle.checked);
@@ -270,3 +445,6 @@ downloadButton.addEventListener("click", async () => {
 });
 
 applyCustomColors(false);
+applyPhotoPosition();
+applyBackgroundPosition();
+loadDefaultBackgroundAssets();

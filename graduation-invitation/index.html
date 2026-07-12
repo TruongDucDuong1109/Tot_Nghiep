@@ -17,6 +17,8 @@
     <section class="workspace" aria-label="Thiệp mời tốt nghiệp">
       <div class="card-frame">
         <article id="invitationCard" class="invitation-card template-rose" aria-label="Thiệp mời tốt nghiệp Kim Trinh">
+          <div class="custom-background-layer" aria-hidden="true"></div>
+
           <!-- Background decorations -->
           <div class="soft-glow glow-one"></div>
           <div class="soft-glow glow-two"></div>
@@ -33,7 +35,7 @@
           <!-- Top ribbon and school logo -->
           <aside class="vertical-ribbon">
             <div class="ribbon-emblem has-logo">
-              <img id="schoolLogo" class="school-logo" src="./assets/LOGO HCMUTE.png" alt="Logo trường">
+              <img id="schoolLogo" class="school-logo" src="./assets/LOGO%20HCMUTE.png" alt="Logo trường">
               <svg class="default-emblem" viewBox="0 0 120 120" role="img" aria-label="Mũ tốt nghiệp">
                 <path class="laurel" d="M37 82c-15-14-15-35-2-49M83 82c15-14 15-35 2-49" fill="none" stroke-width="4" stroke-linecap="round"/>
                 <path class="laurel" d="M32 70l-10 2M34 58l-11-2M38 46l-9-6M88 70l10 2M86 58l11-2M82 46l9-6" fill="none" stroke-width="3" stroke-linecap="round"/>
@@ -43,6 +45,8 @@
                 <circle class="tassel" cx="84" cy="75" r="4"/>
               </svg>
             </div>
+            <span class="ribbon-name">TRẦN THỊ KIM TRINH</span>
+            <!-- <span class="ribbon-subtitle">DẤU ẤN THANH XUÂN</span> -->
           </aside>
 
           <!-- Header copy -->
@@ -68,6 +72,7 @@
                 <span></span><i></i><span></span>
               </div>
             </div>
+            <p class="signature-name" data-bind="graduateName">Kim Trinh</p>
           </section>
 
           <!-- Location -->
@@ -153,6 +158,7 @@
             <option value="template-luxury-frame">Khung Viền Cao Cấp</option>
             <option value="template-photo-spotlight">Ảnh Spotlight</option>
             <option value="template-card-stack">Xếp Lớp Card</option>
+            <option value="template-paper-ribbon">Giấy Basic Ribbon Trái</option>
           </select>
         </label>
 
@@ -199,6 +205,40 @@
             </label>
           </div>
           <button id="resetColorButton" class="reset-color-button" type="button">Về màu mẫu</button>
+        </fieldset>
+
+        <fieldset class="background-image-panel" aria-label="Chỉnh background ảnh">
+          <legend>Background ảnh</legend>
+          <label>
+            <span>Chọn background</span>
+            <select id="backgroundImageSelect" disabled>
+              <option value="">Đang tải background</option>
+            </select>
+          </label>
+          <label>
+            <span>Thêm folder khác</span>
+            <input id="backgroundFolderInput" type="file" accept="image/png,image/jpeg,image/webp" webkitdirectory directory multiple>
+          </label>
+          <label>
+            <span>Phóng nền</span>
+            <input id="backgroundScale" type="range" min="60" max="180" value="100">
+          </label>
+          <label>
+            <span>Dịch ngang</span>
+            <input id="backgroundMoveX" type="range" min="-60" max="60" value="0">
+          </label>
+          <label>
+            <span>Dịch dọc</span>
+            <input id="backgroundMoveY" type="range" min="-60" max="60" value="0">
+          </label>
+          <label>
+            <span>Độ đậm nền</span>
+            <input id="backgroundOpacity" type="range" min="10" max="100" value="100">
+          </label>
+          <div class="panel-button-row">
+            <button id="resetBackgroundPositionButton" class="reset-color-button" type="button">Về giữa nền</button>
+            <button id="removeBackgroundButton" class="reset-color-button" type="button">Xóa nền</button>
+          </div>
         </fieldset>
 
         <label>
@@ -261,6 +301,23 @@
           <span>Ảnh người tốt nghiệp</span>
           <input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp">
         </label>
+
+        <fieldset class="photo-position-panel" aria-label="Chỉnh vị trí ảnh">
+          <legend>Chỉnh ảnh</legend>
+          <label>
+            <span>Dịch ngang</span>
+            <input id="photoMoveX" type="range" min="-30" max="30" value="0">
+          </label>
+          <label>
+            <span>Dịch dọc</span>
+            <input id="photoMoveY" type="range" min="-30" max="30" value="0">
+          </label>
+          <label>
+            <span>Phóng ảnh</span>
+            <input id="photoScale" type="range" min="80" max="135" value="100">
+          </label>
+          <button id="resetPhotoPositionButton" class="reset-color-button" type="button">Về giữa ảnh</button>
+        </fieldset>
 
         <label class="toggle-row">
           <input id="mirrorToggle" type="checkbox">
