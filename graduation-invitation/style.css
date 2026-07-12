@@ -269,7 +269,9 @@ body.no-animation .petal {
 }
 
 .ribbon-name,
-.ribbon-subtitle {
+.ribbon-faculty,
+.ribbon-subtitle,
+.ribbon-tail-border {
   display: none;
 }
 
@@ -3480,21 +3482,46 @@ body.no-animation .petal {
   width: 9%;
   height: 39%;
   background: linear-gradient(180deg, #a92c31 0%, #7c161c 100%);
-  border-inline: 1px solid rgba(255,255,255,.6);
-  box-shadow: 0 15px 26px rgba(80, 20, 22, .2);
+  border-inline: 2px solid #d9b56a;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.28),
+    0 15px 26px rgba(80, 20, 22, .2);
   clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
 }
 
 .template-paper-ribbon .vertical-ribbon::before {
   content: "";
   position: absolute;
-  inset: 2.5% 13% 8%;
-  border: 1px solid rgba(255,255,255,.34);
+  inset: 2.3% 11% 1.2%;
+  border: 1px solid rgba(248, 222, 158, .82);
   border-bottom: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
 }
 
 .template-paper-ribbon .vertical-ribbon::after {
   display: none;
+}
+
+.template-paper-ribbon .ribbon-tail-border {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15%;
+  z-index: 3;
+  display: block;
+  width: 100%;
+  height: 10.12%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.template-paper-ribbon .ribbon-tail-border path {
+  fill: none;
+  stroke: #d9b56a;
+  stroke-width: 2;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  vector-effect: non-scaling-stroke;
 }
 
 .template-paper-ribbon .ribbon-emblem {
@@ -3530,10 +3557,25 @@ body.no-animation .petal {
   width: 72%;
 }
 
+.template-paper-ribbon .ribbon-faculty {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  display: block;
+  width: 82%;
+  color: rgba(255,255,255,.9);
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(3.8px, .68vw, 7px);
+  font-weight: 600;
+  letter-spacing: .04em;
+  line-height: 1.2;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
 .template-paper-ribbon .ribbon-name,
 .template-paper-ribbon .ribbon-subtitle {
   position: absolute;
-  left: 50%;
   display: block;
   width: 265%;
   color: rgba(255,255,255,.94);
@@ -3542,6 +3584,7 @@ body.no-animation .petal {
 }
 
 .template-paper-ribbon .ribbon-name {
+  left: 64%;
   top: 57%;
   font-family: var(--serif);
   font-size: clamp(9px, 1.58vw, 16px);
@@ -3552,7 +3595,8 @@ body.no-animation .petal {
 }
 
 .template-paper-ribbon .ribbon-subtitle {
-  top: 75%;
+  left: 30%;
+  top: 57%;
   font-family: "Montserrat", var(--sans);
   font-size: clamp(4.5px, .82vw, 8.5px);
   font-weight: 600;
