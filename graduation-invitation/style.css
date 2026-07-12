@@ -313,6 +313,10 @@ body.no-animation .petal {
   line-height: 1.1;
 }
 
+.class-of-label {
+  display: none;
+}
+
 .graduate-title {
   margin: 7.5% 0 0;
   color: var(--rose);
@@ -3618,9 +3622,9 @@ body.no-animation .petal {
 
 .template-paper-ribbon .invite-label {
   position: absolute;
-  left: 0;
+  left: -26px;
   top: 12.5%;
-  width: 31%;
+  width: 58%;
   height: 1px;
   overflow: hidden;
   background: #171414;
@@ -3633,7 +3637,7 @@ body.no-animation .petal {
 }
 
 .template-paper-ribbon .graduate-title {
-  margin: 0;
+  margin: 14px;
   color: #1b1716;
   font-family: "Montserrat", var(--sans);
   font-size: clamp(10px, 1.95vw, 20px);
@@ -3642,6 +3646,27 @@ body.no-animation .petal {
   line-height: 1.2;
   text-transform: uppercase;
   text-shadow: none;
+  margin-right: 117px;
+}
+
+.template-paper-ribbon .class-of-label {
+  position: absolute;
+  top: 16px;
+  right: 0;
+  display: block;
+  margin: 0;
+  color: #1b1716;
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(9px, 1.7vw, 18px);
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1.12;
+  text-align: right;
+}
+
+.template-paper-ribbon .class-of-label span {
+  display: block;
+  font-size: .86em;
 }
 
 .template-paper-ribbon .card-header::before {
