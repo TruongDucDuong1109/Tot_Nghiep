@@ -596,6 +596,10 @@ body.no-animation .petal {
   font-weight: 400;
 }
 
+.paper-invite-line {
+  display: none;
+}
+
 /* Graduate image */
 .graduate-figure {
   position: absolute;
@@ -621,8 +625,9 @@ body.no-animation .petal {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 100%;
+  width: auto;
   height: 100%;
+  max-width: none;
   object-fit: contain;
   object-position: bottom right;
   transform: translate(var(--photo-x), var(--photo-y)) scale(var(--photo-scale));
@@ -3624,7 +3629,7 @@ body.no-animation .petal {
   position: absolute;
   left: -26px;
   top: 12.5%;
-  width: 58%;
+  width: 51%;
   height: 1px;
   overflow: hidden;
   background: #171414;
@@ -3673,7 +3678,7 @@ body.no-animation .petal {
   content: "Graduation";
   position: absolute;
   top: 25%;
-  left: 0;
+  left: -84px;
   right: 0;
   color: #111;
   font-family: var(--serif);
@@ -3688,7 +3693,7 @@ body.no-animation .petal {
   content: "Ceremony";
   position: absolute;
   top: 60%;
-  left: 0;
+  left: -71px;
   right: 4%;
   color: #111;
   font-family: var(--script);
@@ -3699,15 +3704,59 @@ body.no-animation .petal {
 }
 
 .template-paper-ribbon .congrats-area {
-  left: 11.8%;
+  left: 8.8%;
   bottom: auto;
-  top: 40.7%;
+  top: 38.4%;
   z-index: 12;
-  width: 34%;
-  min-height: 16%;
-  padding-top: 3.8%;
-  border-top: 1px solid rgba(17,17,17,.65);
+  width: 42%;
+  min-height: 24%;
   color: #2b2727;
+}
+
+.template-paper-ribbon .paper-invite-line {
+  display: grid;
+  justify-items: center;
+  gap: 13.2%;
+  margin: 0;
+  padding-bottom: 25%;
+  border-bottom: 1px solid rgba(17,17,17,.65);
+  color: #211d1d;
+  text-align: center;
+}
+
+.template-paper-ribbon .paper-invite-kicker,
+.template-paper-ribbon .paper-invite-copy {
+  font-family: "Montserrat", var(--sans);
+  letter-spacing: .02em;
+}
+
+.template-paper-ribbon .paper-invite-kicker {
+  color: #171414;
+  font-size: clamp(9px, 1.56vw, 16px);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.template-paper-ribbon .paper-invite-copy {
+  color: #211d1d;
+  font-size: clamp(8px, 1.43vw, 15px);
+  font-weight: 500;
+  line-height: 1.22;
+}
+
+.template-paper-ribbon .paper-invite-name,
+.template-paper-ribbon .paper-invite-graduate {
+  color: #8f2029;
+  font-family: var(--script);
+  font-size: clamp(31px, 5.8vw, 48px);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.template-paper-ribbon .paper-invite-graduate {
+  font-size: clamp(28px, 5.1vw, 64px);
 }
 
 .template-paper-ribbon .congrats-ribbon {
@@ -3734,8 +3783,7 @@ body.no-animation .petal {
 }
 
 .template-paper-ribbon .congrats-ribbon span::after {
-  content: "THÂN MỜI BẠN ĐẾN DỰ";
-  font-size: clamp(9px, 1.55vw, 16px);
+  content: "";
 }
 
 .template-paper-ribbon .graduate-mark,
@@ -3747,31 +3795,34 @@ body.no-animation .petal {
   content: "Sự hiện diện và những lời chúc tốt đẹp của bạn sẽ làm cho ngày này trở nên đáng nhớ hơn bao giờ hết!";
   display: block;
   width: 86%;
-  margin-top: 13%;
+  margin: 7.4% auto 0;
   color: #665e5e;
-  font-size: clamp(9px, 1.65vw, 17px);
+  font-size: clamp(7px, 1.18vw, 15px);
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.45;
+  text-align: center;
 }
 
 .template-paper-ribbon .event-row {
-  top: 61.8%;
-  left: 11.8%;
+  top: 71%;
+  left: 8.8%;
   z-index: 12;
   display: flex;
   align-items: center;
-  width: 34%;
+  justify-content: center;
+  width: 43%;
   min-height: 0;
   padding: 3% 0 3.2%;
   border-top: 1px solid rgba(17,17,17,.65);
   border-bottom: 1px solid rgba(17,17,17,.65);
+  text-align: center;
 }
 
 .template-paper-ribbon .signature-name {
   display: block;
   position: absolute;
   left: 8%;
-  top: calc(100% + 48%);
+  top: calc(100% + 151%);
   margin: 0;
   color: #352d2d;
   font-family: var(--script);
