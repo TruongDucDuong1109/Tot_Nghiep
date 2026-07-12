@@ -95,6 +95,8 @@ const defaultBackgroundAssets = [
   "./assets/background/loang7.jpg",
   "./assets/background/loang8.jpg"
 ];
+const backgroundFolderPath = "./assets/background/";
+const backgroundImagePattern = /\.(png|jpe?g|webp|gif)$/i;
 
 let uploadedPhotoUrl = "";
 let uploadedLogoUrl = "";
@@ -238,10 +240,40 @@ function renderBackgroundOptions(options, defaultMessage = "Chưa có background
   setCustomBackground(0);
 }
 
-function loadDefaultBackgroundAssets() {
+function normalizeBackgroundUrl(path) {
+  return new URL(path, window.location.href).href;
+}
+
+async function discoverBackgroundAssets() {
+  try {
+    const response = await fetch(backgroundFolderPath, { cache: "no-store" });
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const html = await response.text();
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const urls = [...doc.querySelectorAll("a")]
+      .map((link) => link.getAttribute("href") || "")
+      .filter((href) => backgroundImagePattern.test(href))
+      .map((href) => normalizeBackgroundUrl(href.startsWith("http") ? href : `${backgroundFolderPath}${href.split("/").pop()}`));
+
+    return [...new Set(urls)];
+  } catch (error) {
+    return [];
+  }
+}
+
+async function loadDefaultBackgroundAssets() {
   clearBackgroundOptions();
-  backgroundOptions = defaultBackgroundAssets.map((url) => ({
-    name: url.split("/").pop(),
+  const discoveredAssets = await discoverBackgroundAssets();
+  const assetUrls = discoveredAssets.length
+    ? discoveredAssets
+    : defaultBackgroundAssets.map(normalizeBackgroundUrl);
+
+  backgroundOptions = assetUrls.map((url) => ({
+    name: decodeURIComponent(url.split("/").pop()),
     url,
     revoke: false
   }));
