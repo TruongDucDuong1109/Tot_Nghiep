@@ -462,6 +462,137 @@ body.no-animation .petal {
     rgba(200, 165, 107, 0);
 }
 
+/* Schedule */
+.schedule-block {
+  position: absolute;
+  top: 117%;
+  left: 20px;
+  width: 82%;
+  padding: 0;
+}
+
+.schedule-title,
+.phone-line {
+  margin: 0;
+}
+
+.schedule-title {
+  color: var(--rose);
+  font-size: clamp(8px, 1.42vw, 15px);
+  font-weight: 700;
+  letter-spacing: .26em;
+  text-align: center;
+}
+
+.schedule-list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8%;
+  margin: 2.9% 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.schedule-list::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: clamp(10px, 2vw, 20px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200, 165, 107, 0), rgba(200, 165, 107, .92) 14%, rgba(200, 165, 107, .92) 86%, rgba(200, 165, 107, 0));
+}
+
+.schedule-list li {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: clamp(3px, .58vw, 6px);
+  min-height: clamp(38px, 6.6vw, 66px);
+  padding: 0;
+  border-radius: 0;
+  color: #312b2d;
+  background: transparent;
+}
+
+.schedule-list li::before {
+  content: "";
+  position: relative;
+  z-index: 1;
+  width: clamp(13px, 2.45vw, 25px);
+  aspect-ratio: 1;
+  border: 1.5px solid var(--rose);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, .88);
+}
+
+.schedule-list time {
+  color: var(--muted);
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(7px, 1.16vw, 12px);
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.schedule-list span {
+  color: #33292c;
+  font-family: var(--serif);
+  font-size: clamp(9px, 1.46vw, 15px);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: .01em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.schedule-list .schedule-highlight {
+  color: #fff;
+  background: transparent;
+}
+
+.schedule-list .schedule-highlight::before {
+  border-color: var(--rose);
+  background: var(--rose);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, .9), 0 6px 16px rgba(201, 120, 142, .3);
+}
+
+.schedule-highlight time,
+.schedule-highlight span {
+  color: var(--rose);
+}
+
+.phone-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2.4%;
+  margin-top: 3.2%;
+  padding-top: 0;
+  border-top: 0;
+  color: #292426;
+  text-align: center;
+}
+
+.phone-line span {
+  color: var(--rose);
+  font-size: clamp(7px, 1.18vw, 12px);
+  font-weight: 700;
+  letter-spacing: .18em;
+}
+
+.phone-line strong {
+  font-family: "Montserrat", var(--sans);
+  font-size: clamp(8px, 1.28vw, 14px);
+  font-weight: 700;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
 /* Location */
 .location-block {
   position: absolute;
@@ -503,6 +634,23 @@ body.no-animation .petal {
   font-size: clamp(8px, 1.46vw, 15px);
   font-weight: 300;
   line-height: 1.55;
+}
+
+.location-block .address-one-line {
+  white-space: nowrap;
+}
+
+.location-block .phone-line {
+  justify-content: center;
+  margin-top: 2.4%;
+  color: #292426;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.location-block .phone-line span {
+  color: var(--rose);
 }
 
 /* Congratulation artwork */
@@ -3706,7 +3854,7 @@ body.no-animation .petal {
 .template-paper-ribbon .congrats-area {
   left: 8.8%;
   bottom: auto;
-  top: 38.4%;
+  top: 33.4%;
   z-index: 12;
   width: 42%;
   min-height: 24%;
@@ -3751,7 +3899,7 @@ body.no-animation .petal {
   font-size: clamp(31px, 5.8vw, 48px);
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 1;
+  line-height: 1.27;
   white-space: nowrap;
 }
 
@@ -3804,7 +3952,7 @@ body.no-animation .petal {
 }
 
 .template-paper-ribbon .event-row {
-  top: 71%;
+  top: 67%;
   left: 8.8%;
   z-index: 12;
   display: flex;

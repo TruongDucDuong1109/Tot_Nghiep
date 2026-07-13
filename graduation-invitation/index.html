@@ -72,11 +72,28 @@
             </div>
             <div class="time-block">
               <p data-bind="session">BUỔI CHIỀU</p>
-              <strong data-bind="time">14:00 – 17:00</strong>
+              <strong data-bind="time">13:00 – 17:00</strong>
               <div class="ornament" aria-hidden="true">
                 <span></span><i></i><span></span>
               </div>
             </div>
+            <section class="schedule-block" aria-label="Lịch trình buổi lễ">
+              <p class="schedule-title">LỊCH TRÌNH</p>
+              <ol class="schedule-list">
+                <li>
+                  <time>12:00 - 13:00</time>
+                  <span>Tiếp khách</span>
+                </li>
+                <li class="schedule-highlight">
+                  <time>13:00 - 16:00</time>
+                  <span>Dự lễ</span>
+                </li>
+                <li>
+                  <time>16:00 - 17:30</time>
+                  <span>Tiếp khách</span>
+                </li>
+              </ol>
+            </section>
             <!-- <p class="signature-name" data-bind="graduateName">Kim Trinh</p> -->
           </section>
 
@@ -88,15 +105,15 @@
             </svg>
             <div>
               <h2 data-bind="school">TRƯỜNG ĐH SƯ PHẠM KỸ THUẬT TP.HCM</h2>
-              <p data-bind="addressLine1">Số 1 Võ Văn Ngân,</p>
-              <p data-bind="addressLine2">Phường Linh Chiểu, TP. Thủ Đức</p>
+              <p class="address-one-line"><span data-bind="addressLine1">Số 1 Võ Văn Ngân,</span> <span data-bind="addressLine2">Phường Linh Chiểu, TP. Thủ Đức</span></p>
+              <p class="phone-line"><strong>0337102076 - 0375498645</strong></p>
             </div>
           </section>
 
           <!-- Congratulation artwork -->
           <section class="congrats-area" aria-label="Chúc mừng">
             <div class="paper-invite-line">
-              <span class="paper-invite-kicker" style="margin-bottom: 13px;">THÂN MỜI BẠN</span>
+              <span class="paper-invite-kicker" style="margin-bottom: 5px;">THÂN MỜI BẠN</span>
               <span class="paper-invite-name" data-bind="guestName">Bạn</span>
               <span class="paper-invite-copy">đến dự buổi lễ tốt nghiệp của</span>
               <span class="paper-invite-graduate" data-bind="graduateName">Kim Trinh</span>
@@ -289,7 +306,7 @@
           </label>
           <label>
             <span>Thời gian</span>
-            <input type="text" name="time" value="14:00 – 17:00" data-target="time">
+            <input type="text" name="time" value="13:00 – 17:00" data-target="time">
           </label>
         </div>
 
