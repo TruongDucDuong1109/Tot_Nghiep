@@ -11,7 +11,7 @@ const mirrorToggle = document.getElementById("mirrorToggle");
 const downloadButton = document.getElementById("downloadButton");
 const resetColorButton = document.getElementById("resetColorButton");
 const resetPhotoPositionButton = document.getElementById("resetPhotoPositionButton");
-const backgroundFolderInput = document.getElementById("backgroundFolderInput");
+const backgroundFileInput = document.getElementById("backgroundFileInput");
 const backgroundImageSelect = document.getElementById("backgroundImageSelect");
 const resetBackgroundPositionButton = document.getElementById("resetBackgroundPositionButton");
 const removeBackgroundButton = document.getElementById("removeBackgroundButton");
@@ -93,11 +93,13 @@ const defaultBackgroundAssets = [
   "./assets/background/loang5.jpg",
   "./assets/background/loang6.jpg",
   "./assets/background/loang7.jpg",
-  "./assets/background/loang8.jpg"
+  "./assets/background/loang8.jpg",
+  "./assets/background/t%E1%BA%A3i%20xu%E1%BB%91ng%20(1).jpg",
+  "./assets/background/t%E1%BA%A3i%20xu%E1%BB%91ng%203.jpg",
+  "./assets/background/t%E1%BA%A3i%20xu%E1%BB%91ng%205.jpg",
+  "./assets/background/t%E1%BA%A3i%20xu%E1%BB%91ng.jpg",
+  "./assets/background/the%20most%20pretty%20wave%20%F0%9F%8C%8A.jpg"
 ];
-const backgroundFolderPath = "./assets/background/";
-const backgroundImagePattern = /\.(png|jpe?g|webp|gif)$/i;
-
 let uploadedPhotoUrl = "";
 let uploadedLogoUrl = "";
 let backgroundOptions = [];
@@ -244,33 +246,9 @@ function normalizeBackgroundUrl(path) {
   return new URL(path, window.location.href).href;
 }
 
-async function discoverBackgroundAssets() {
-  try {
-    const response = await fetch(backgroundFolderPath, { cache: "no-store" });
-
-    if (!response.ok) {
-      return [];
-    }
-
-    const html = await response.text();
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const urls = [...doc.querySelectorAll("a")]
-      .map((link) => link.getAttribute("href") || "")
-      .filter((href) => backgroundImagePattern.test(href))
-      .map((href) => normalizeBackgroundUrl(href.startsWith("http") ? href : `${backgroundFolderPath}${href.split("/").pop()}`));
-
-    return [...new Set(urls)];
-  } catch (error) {
-    return [];
-  }
-}
-
 async function loadDefaultBackgroundAssets() {
   clearBackgroundOptions();
-  const discoveredAssets = await discoverBackgroundAssets();
-  const assetUrls = discoveredAssets.length
-    ? discoveredAssets
-    : defaultBackgroundAssets.map(normalizeBackgroundUrl);
+  const assetUrls = defaultBackgroundAssets.map(normalizeBackgroundUrl);
 
   backgroundOptions = assetUrls.map((url) => ({
     name: decodeURIComponent(url.split("/").pop()),
@@ -326,25 +304,23 @@ Object.values(backgroundControls).forEach((input) => {
   });
 });
 
-backgroundFolderInput.addEventListener("change", () => {
-  const files = [...(backgroundFolderInput.files || [])]
+backgroundFileInput.addEventListener("change", () => {
+  const files = [...(backgroundFileInput.files || [])]
     .filter((file) => file.type.startsWith("image/"))
     .sort((a, b) => {
-      const nameA = a.webkitRelativePath || a.name;
-      const nameB = b.webkitRelativePath || b.name;
-      return nameA.localeCompare(nameB);
+      return a.name.localeCompare(b.name);
     });
 
   clearBackgroundOptions();
 
   if (!files.length) {
-    renderBackgroundOptions([], "Không có ảnh trong folder");
-    setStatus("Folder chưa có ảnh PNG/JPG/WEBP.");
+    renderBackgroundOptions([], "Không có ảnh background");
+    setStatus("Chưa chọn ảnh PNG/JPG/WEBP.");
     return;
   }
 
   backgroundOptions = files.map((file) => ({
-    name: file.webkitRelativePath || file.name,
+    name: file.name,
     url: URL.createObjectURL(file),
     revoke: true
   }));
