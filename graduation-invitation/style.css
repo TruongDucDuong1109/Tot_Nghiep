@@ -65,6 +65,7 @@ button {
 }
 
 .card-frame {
+  container-type: inline-size;
   width: min(100%, 72vh, 720px);
   aspect-ratio: 2 / 3;
   filter: drop-shadow(0 30px 58px rgba(91, 42, 60, .16));
@@ -4330,6 +4331,137 @@ body.no-animation .petal {
   .field-grid,
   .field-grid.two-columns {
     grid-template-columns: 1fr;
+  }
+}
+
+@supports (font-size: 1cqw) {
+  .template-paper-ribbon .ribbon-emblem::before {
+    font-size: clamp(15px, 3.9cqw, 28px);
+  }
+
+  .template-paper-ribbon .ribbon-faculty {
+    font-size: clamp(3.8px, .98cqw, 7px);
+  }
+
+  .template-paper-ribbon .ribbon-name {
+    font-size: clamp(9px, 2.22cqw, 16px);
+  }
+
+  .template-paper-ribbon .ribbon-subtitle {
+    font-size: clamp(4.5px, 1.18cqw, 8.5px);
+  }
+
+  .template-paper-ribbon .graduate-title {
+    font-size: clamp(10px, 2.78cqw, 20px);
+  }
+
+  .template-paper-ribbon .class-of-label {
+    font-size: clamp(9px, 2.5cqw, 18px);
+  }
+
+  .template-paper-ribbon .card-header::before {
+    font-size: clamp(42px, 14.45cqw, 104px);
+  }
+
+  .template-paper-ribbon .card-header::after {
+    font-size: clamp(48px, 16.4cqw, 118px);
+  }
+
+  .template-paper-ribbon .paper-invite-kicker {
+    font-size: clamp(9px, 2.22cqw, 16px);
+  }
+
+  .template-paper-ribbon .paper-invite-copy {
+    font-size: clamp(8px, 2.08cqw, 15px);
+  }
+
+  .template-paper-ribbon .paper-invite-name,
+  .template-paper-ribbon .paper-invite-graduate {
+    font-size: clamp(28px, 6.7cqw, 48px);
+  }
+
+  .template-paper-ribbon .congrats-area::after {
+    font-size: clamp(7px, 1.8cqw, 13px);
+  }
+
+  .template-paper-ribbon .date-block strong,
+  .template-paper-ribbon .date-block span,
+  .template-paper-ribbon .time-block strong {
+    font-size: clamp(8px, 2.08cqw, 15px);
+  }
+
+  .template-paper-ribbon .location-block h2 {
+    font-size: clamp(8px, 2.22cqw, 16px);
+  }
+
+  .template-paper-ribbon .location-block p {
+    font-size: clamp(7px, 1.8cqw, 13px);
+  }
+}
+
+@container (max-width: 430px) {
+  .template-paper-ribbon .card-header {
+    inset: 5.7% 7.2% auto 15.5%;
+    min-height: 20%;
+  }
+
+  .template-paper-ribbon .graduate-title {
+    margin-top: 10px;
+    margin-right: 74px;
+  }
+
+  .template-paper-ribbon .class-of-label {
+    top: 11px;
+  }
+
+  .template-paper-ribbon .card-header::before {
+    top: 28%;
+    left: -44px;
+  }
+
+  .template-paper-ribbon .card-header::after {
+    top: 58%;
+    left: -38px;
+    right: 1%;
+  }
+
+  .template-paper-ribbon .congrats-area {
+    top: 34.8%;
+    left: 8.5%;
+    width: 41%;
+  }
+
+  .template-paper-ribbon .paper-invite-line {
+    gap: 9%;
+    padding-bottom: 20%;
+  }
+
+  .template-paper-ribbon .congrats-area::after {
+    width: 94%;
+    margin-top: 5%;
+    line-height: 1.32;
+  }
+
+  .template-paper-ribbon .event-row {
+    top: 66%;
+    width: 42%;
+    padding-block: 2.5%;
+  }
+
+  .template-paper-ribbon .location-block {
+    bottom: 3.7%;
+    left: 9.4%;
+    width: 78%;
+  }
+}
+
+@media (max-width: 390px) {
+  .app-shell {
+    padding: 8px;
+  }
+
+  .control-panel {
+    padding: 12px;
   }
 }
 
